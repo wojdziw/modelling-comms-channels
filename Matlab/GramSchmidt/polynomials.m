@@ -24,51 +24,11 @@ function coefficients = polynomials(highest_order, xrange)
     g_g_product(order) = inner_product(coefficients(order,:), coefficients(order,:), xrange);
   end
   
-  % Verifying orthogonality
-  for i = 1:highest_order
-    for j = i:highest_order
-      if (i == j)
-        if (inner_product(coefficients(i,:), coefficients(j,:), xrange) > 10^(-3)) 
-          fprintf('Polynomial of order %0.0f is not orthogonal to itself :) \n',i)
-        else 
-          fprintf('Polynomial of order %0.0f is orthogonal to itself :( \n',i)
-        end
-      end
-      if (i ~= j)
-        if (inner_product(coefficients(i,:), coefficients(j,:), xrange) < 10^(-3)) 
-          fprintf('Polynomials of orders %0.0f and %0.0f are orthogonal :) \n',i,j)
-        else 
-          fprintf('Polynomials of orders %0.0f and %0.0f are not orthogonal :( \n',i,j)
-        end
-      end
-    end
-  end
-  
-  
   % Computing the normalizing constant and normalizing the polynomial
   for order = 1:highest_order
     normalizing_constant = sqrt(g_g_product(order));
     coefficients(order, :) = coefficients(order,:)/normalizing_constant;
   end
   
-  % Verifying orthonormality
-  for i = 1:highest_order
-    for j = i:highest_order
-      if (i == j)
-        product = inner_product(coefficients(i,:), coefficients(j,:), xrange);
-        if (product > 0.999 && product < 1.001) 
-          fprintf('Polynomial of order %0.0f is not orthonormal to itself :) \n',i)
-        else 
-          fprintf('Polynomial of order %0.0f is orthonormal to itself :( \n',i)
-        end
-      end
-      if (i ~= j)
-        if (inner_product(coefficients(i,:), coefficients(j,:), xrange) < 10^(-3)) 
-          fprintf('Polynomials of orders %0.0f and %0.0f are orthonormal :) \n',i,j)
-        else 
-          fprintf('Polynomials of orders %0.0f and %0.0f are not orthonormal :( \n',i,j)
-        end
-      end
-    end
-  end
+  
       
