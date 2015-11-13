@@ -9,10 +9,10 @@
 % A single numerical value of the result
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-function result = inner_product(coefficients1, coefficients2, xrange)
+function integral = inner_product(coefficients1, coefficients2, xrange)
   polynomial1 = polyval(coefficients1, xrange);
   polynomial2 = polyval(coefficients2, xrange);
   exponential = exp(-xrange);
   
   product = polynomial1 .* polynomial2 .* exponential;
-  result = trapz(xrange, product);
+  integral = trapz(xrange, product);
