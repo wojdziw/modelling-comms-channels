@@ -1,0 +1,25 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% function polynomials.m
+%
+% Computes the vector of the e-coefficients of the Gram-Schmidt polynomials
+% Inputs:
+% highest_order    Highest order of the calculated polynomials
+% Outputs:
+% A vector of vectors containing the coefficients.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+function coefficients = polynomials(highest_order, xrange)
+  ones = generate_ones(highest_order);
+  coefficients = zeros(highest_order);
+  auto_product
+
+  for order = 1:highest_order
+    coefficients(order, highest_order-order+1) = 1;
+    display(order);
+    for power = 1:order-1
+      product = inner_product(ones(order,:),coefficients(order-power,:),xrange);
+      coefficients(order, :) = coefficients(order, :) + (-1)*product*coefficients(order-power, :);
+    end
+    display(coefficients);
+  end 
+  display(coefficients);
