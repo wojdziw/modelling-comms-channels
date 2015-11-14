@@ -1,0 +1,26 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% GramSchmidtLaguerreComparison.m
+% Calculates the coefficients of the associated set of Laguerre functions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+highest_order = 5;                            % Define the highest order of the orthogonal polynomial
+xrange = (0:0.001:70);                        % X range for investigation
+alpha = 0;
+
+lr_coefficients = rec_lag_polynomials(highest_order,alpha);
+
+for i = 1:highest_order+1
+  order = i-1;
+  scale = sqrt(gamma(order+1)/gamma(order+1+alpha));
+  lr_coefficients(i,:) = lr_coefficients(i,:)/scale;
+end
+
+display(lr_coefficients);
+
+for i = 1:highest_order+1
+  a_laguerres(i,:) = polyval(coefficients(i,:),xrange) .* exp(xrange/2) .* xrange^(alpha/2);
+end
+
+
+
+  

@@ -8,9 +8,11 @@ xrange = (0:0.001:70);                        % X range for investigation
 
 coefficients = polynomials(highest_order, xrange);  % Calculate the coefficients of the polynomials
 
+display(coefficients);
+
 hold off;
 set(gca, 'FontSize', 18);
-for i = 1:highest_order
+for i = 1:highest_order+1
   y = polyval(coefficients(i,:),xrange);
   axis([0,20,-80,80])
   plot(xrange, y, '-', 'LineWidth',1, 'Color', [rand rand rand]); hold on; 
@@ -19,8 +21,8 @@ xlabel('x'); ylabel('Normalised polynomials values');
 print('-depsc', 'gm.eps'); % Save diagram as colour postscript
 
 % Verifying orthogonality
-for i = 1:highest_order
-  for j = i:highest_order
+for i = 1:highest_order+1
+  for j = i:highest_order+1
     if (i == j)
       if (inner_product(coefficients(i,:), coefficients(j,:), xrange) > 10^(-3)) 
         fprintf('Polynomial of order %0.0f is not orthogonal to itself :) \n',i)

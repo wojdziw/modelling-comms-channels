@@ -8,15 +8,17 @@
 % A vector of vectors containing the coefficients.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-function coefficients = polynomials(highest_order, xrange)
+function coefficients = gs_polynomials(highest_order, xrange)
   highest_order = highest_order+1;
 
-  ones = monomials(highest_order);
+  ones = gs_basis_functions(highest_order);
   coefficients = zeros(highest_order);
   g_g_product = zeros([1 highest_order]);
+  
+  display(ones);
 
   for order = 1:highest_order
-    coefficients(order, highest_order-order+1) = 1;
+    coefficients(order, highest_order-order+1) = 1*(-1)^(order+1);
     for power = 1:order-1
       v_g_product = inner_product(ones(order,:),coefficients(order-power,:),xrange);
       e_coeff = v_g_product/g_g_product(order-power);
@@ -26,11 +28,10 @@ function coefficients = polynomials(highest_order, xrange)
     g_g_product(order) = inner_product(coefficients(order,:), coefficients(order,:), xrange);
   end
   
+  display(coefficients);
+  
   % Computing the normalizing constant and normalizing the polynomial
   for order = 1:highest_order
     normalizing_constant = sqrt(g_g_product(order));
     coefficients(order, :) = coefficients(order,:)/normalizing_constant;
   end
-  
-  
-      
