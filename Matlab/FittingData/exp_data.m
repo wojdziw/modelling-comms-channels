@@ -44,7 +44,7 @@ fo = fo/trapz(x,fo);        % normalise; fo is a density func
 ystr = sprintf('Exponentially distributed data (mean = %g)',sigma2);
 figure
 set(gca,'FontSize',18);
-plot(x,fo,'kx','LineWidth',1.2)
+plot(x,fo,'k.','LineWidth',1.2)
 xlabel('x');
 ylabel(ystr);
 grid on
