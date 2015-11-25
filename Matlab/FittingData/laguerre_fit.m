@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% function rec_lag_polynomials.m
+% function laguerre_fit.m
 %
 % Computes a Laguerre fit to the distribution data
 % Inputs:
@@ -20,12 +20,4 @@ function result = laguerre_fit(Y, X, order, alpha)
   
   result = coefs * lag_values;
   
-  display(coefs);
-  
-  hold on;
-  set(gca, 'FontSize', 18);
-  plot(X, result, '-', 'LineWidth',2, 'Color', 'red'); hold on; 
-  xlabel('x'); ylabel('Normalised polynomials values');
-  print('-depsc', 'gm.eps'); % Save diagram as colour postscript
-  
-  end
+end

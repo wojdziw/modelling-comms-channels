@@ -30,5 +30,18 @@ title('Histogram points for measured data');
 grid on
 
 %%% Your code here %%%
+laguerre = laguerre_scaled_fit(fo,xi,2,5);
+
+error = 0;
+% Calculating the error
+for i = 1:length(xi)
+  error = error + (fo(i)-laguerre(i))^2;
+end
+display(error);
+
+hold on;
+% figure
+set(gca, 'FontSize', 18);
+plot(xi, laguerre, '-', 'LineWidth',2, 'Color', 'red'); hold on; 
 
 end

@@ -41,14 +41,14 @@ X = abs(W).^2;
 fo = fo/trapz(x,fo);        % normalise; fo is a density func
 
 % Plot the data and save
-ystr = sprintf('Exponentially distributed data (mean = %g)',sigma2);
-figure
-set(gca,'FontSize',18);
-plot(x,fo,'k.','LineWidth',1.2)
-xlabel('x');
-ylabel(ystr);
-grid on
-print('-depsc',sprintf('exp_data_%g.eps',sigma2));
+% ystr = sprintf('Exponentially distributed data (mean = %g)',sigma2);
+% figure
+% set(gca,'FontSize',18);
+% plot(x,fo,'k.','LineWidth',1.2)
+% xlabel('x');
+% ylabel(ystr);
+% grid on
+% print('-depsc',sprintf('exp_data_%g.eps',sigma2));
 
 end
 
