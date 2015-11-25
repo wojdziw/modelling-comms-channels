@@ -6,11 +6,12 @@
 clear
 close all
 
-sigma2 = 6; mu = 100;
+sigma2 = 6; mu = 1000;
 nsamp = 1e4 ; nbins = 100;
 [fo , x] = exp_data (sigma2, mu, nsamp, nbins);
 
-laguerre = laguerre_optimal_fit(fo,x);
+n = 10;
+laguerre = laguerre_optimal_fit(fo,x,n);
 
 % xscaled = x;
 % ystr = sprintf('Exponentially distributed data (mean = %g)',sigma2);

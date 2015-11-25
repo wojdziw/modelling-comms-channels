@@ -1,17 +1,32 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % function laguerre_optimal_fit.m
 %
-% Computes a Laguerre fit to the distribution data
-% Inputs:
-
-% Outputs:
-
+% Computes an optimal Laguerre fit to the distribution data,
+% with alpha and x-scaling parameters being optimally found using the
+% fminsearch function.
+%
+% Inputs:   fo       values of the function being fitted
+%           x        domain of the function being fitted
+%           n        highest order of the Laguerre polynomial being used
+% 
+% Outputs:  result   the vector of values of the Laguerre fit
+%   
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-function result = laguerre_optimal_fit(fo, x)
+function result = laguerre_optimal_fit(fo, x, n)
 
-  params = fminsearch(@(params) fit_error(fo, x, 5, params), [10, 10]);
+  % Initial estimates for the values of alpha and x-scale
+  alpha_guess = 10;
+  scale_guess = 10;
 
-  result = laguerre_scaled_fit(fo, x, 5, params(1), params(2));
+  % Optimisation of alpha and scale using fminsearch
+  params = fminsearch(@(params) fitting_error(fo, x, n, params), [alpha_guess, scale_guess]);
+  
+  alpha = params(1);
+  scale = params(2);
+
+  % Computing the fit based on the optimally scaled domain and optimised alpha
+  xscaled = scale*(x-x(1))/(x(length(x))-x(1));
+  result = laguerre_fit(fo, xscaled, n, alpha);
     
 end

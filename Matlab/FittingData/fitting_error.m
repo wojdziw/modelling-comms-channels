@@ -8,10 +8,16 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-function result = laguerre_scaled_fit(fo, x, n, alpha, scale)
-
+function error = fitting_error(fo, x, n, params)
+  alpha = params(1);
+  scale = params(2);
+  
   xscaled = scale*(x-x(1))/(x(length(x))-x(1));
-
-  result = laguerre_fit(fo,xscaled, n, alpha);
-    
+  laguerre = laguerre_fit(fo, xscaled, n, alpha);
+ 
+  error = 0;
+  for i = 1:length(fo)
+    error = error + (fo(i)-laguerre(i))^2;
+  end
+  
 end
