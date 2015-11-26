@@ -9,10 +9,10 @@
 n = 5;                            % Define the highest order of the orthogonal polynomial
 x = 0:0.001:70;                        % X range for investigation
 alpha = 0;
-alternating_ones = false;
+alternating_ones = true;
 
 % Computing the Gram Schmidt and Laguerre values for the given x
-gm_coefficients = polynomials(n, x, alternating_ones);
+gm_coefficients = gs_polynomials(n, x, alternating_ones);
 lr_coefficients = recursive_laguerre(n,alpha);
 
 display(gm_coefficients);
