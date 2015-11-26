@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% function fitting_error.m
+% FITTING_ERROR(fo, x, n, params)
 %
 % Computes the error between the supplied dataset points and the Laguerre
 % fit being investigated. 

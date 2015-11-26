@@ -7,7 +7,7 @@
 % Outputs:
 % Matrix with the coefficients
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function ones = monomials(highest_order)
+function ones = basis_ones(highest_order)
   ones = zeros(highest_order);
   for i = 1:highest_order
     ones(i, highest_order-i+1) = 1;

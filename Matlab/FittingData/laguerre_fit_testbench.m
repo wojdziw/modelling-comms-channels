@@ -12,9 +12,9 @@ clear
 close all
 
 % Generating the exponentially distributed data
-sigma2 = 2; mu = 1;
+sigma2 = 1/3; mu = 1+1i;
 nsamp = 1e4 ; nbins = 100;
-[fo , x] = exp_data (sigma2, mu, nsamp, nbins);
+[fo, x] = exp_data (sigma2, mu, nsamp, nbins);
 
 % Computing the basic Laguerre fit to the generated data
 laguerre = laguerre_fit(fo,x,5,0);

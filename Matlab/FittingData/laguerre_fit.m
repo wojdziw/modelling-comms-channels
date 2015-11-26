@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% function laguerre_fit.m
+% LAGUERRE_FIT(fo, x, n, alpha)
 %
 % Computes a basic Laguerre fit to the exponentially distributed data
 % (randomly generated). 
@@ -19,9 +19,10 @@ function result = laguerre_fit(fo, x, n, alpha)
   lag_values = associated_laguerre(n, alpha, x);
   coefs = zeros(1,n+1);
   
-  for i = 1:n+1
-    product = laguerre_inner_product(lag_values(i,:), fo, x);
-    coefs(i) = product;
+  for order = 0:n
+    row = order+1;
+    product = laguerre_inner_product(lag_values(row,:), fo, x);
+    coefs(row) = product;
   end
   
   result = coefs * lag_values;

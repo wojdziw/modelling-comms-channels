@@ -1,15 +1,20 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% function inner_product.m
+% LAGUERRE_INNER_PRODUCT(y1, y2, xrange)
 %
-% Computes the inner product of two functions given an x
-% Inputs:
-% coefficients1, coefficients2    Coefficients of the functions for which
-% we compute the inner product
-% Outputs:
-% A single numerical value of the result
+% Computes the inner product of two Laguerre polynomials over the supplied
+% x range
+%
+% Inputs:   y1              first polynomial datapoints
+%           y2              second polynomial datapoints
+% 
+% Outputs:  integral        inner product calculated through a numerical
+%                           integral using the trapezium method
+%   
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 function integral = laguerre_inner_product(y1, y2, xrange)
+  
   product = y1 .* y2;
   integral = trapz(xrange, product);
+
 end

@@ -7,7 +7,7 @@
 % Outputs:
 % Matrix with the coefficients
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function ones = gs_basis_functions(highest_order)
+function ones = basis_ones_alternating(highest_order)
   ones = zeros(highest_order);
   for i = 1:highest_order
     ones(i, highest_order-i+1) = 1*(-1)^(i+1);
