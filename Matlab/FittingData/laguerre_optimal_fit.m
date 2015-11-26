@@ -1,9 +1,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % function laguerre_optimal_fit.m
 %
-% Computes an optimal Laguerre fit to the distribution data,
-% with alpha and x-scaling parameters being optimally found using the
-% fminsearch function.
+% Computes an optimal Laguerre fit to the exponentially distributed data
+% (randomly generated), with alpha and x-scaling parameters being optimally
+% found using the fminsearch function.
 %
 % Inputs:   fo       values of the function being fitted
 %           x        domain of the function being fitted

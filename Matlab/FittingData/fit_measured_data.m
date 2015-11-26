@@ -32,15 +32,12 @@ grid on
 %%% Your code here %%%
 laguerre = laguerre_optimal_fit(fo,xi,2);
 
-error = 0;
 % Calculating the error
-for i = 1:length(xi)
-  error = error + (fo(i)-laguerre(i))^2;
-end
+error = trapz(xi, (laguerre-fo).^2);
 display(error);
 
 hold on;
 % figure
 set(gca, 'FontSize', 18);
-plot(xi, laguerre, '-', 'LineWidth',1, 'Color', 'blue'); hold on; 
+plot(xi, laguerre, '-', 'LineWidth',1, 'Color', 'blue');
 end
