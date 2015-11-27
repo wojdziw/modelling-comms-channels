@@ -39,6 +39,7 @@ function coefficients = gs_polynomials(n, x, alternating_ones)
     for power = 1:order
       v_g_product = gs_inner_product(ones(row,:),coefficients(row-power,:),x);
       e_coeff = v_g_product/g_g_product(row-power);
+      fprintf('e%0.0f%0.0f equals %0.3f \n',row-1, power-1, e_coeff)
       coefficients(row, :) = coefficients(row, :) + (-1)*e_coeff*coefficients(row-power, :);
     end
     g_g_product(row) = gs_inner_product(coefficients(row,:), coefficients(row,:), x);

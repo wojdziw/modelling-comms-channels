@@ -16,7 +16,8 @@
 function result = laguerre_optimal_fit(fo, x, n)
 
   % Initial estimates for the values of alpha and x-scale
-  alpha_guess = 10;
+  alpha_guess = 5;
+  % alpha_guess = 0; <- look into that
   scale_guess = 10;
 
   % Optimisation of alpha and scale using fminsearch
@@ -24,7 +25,7 @@ function result = laguerre_optimal_fit(fo, x, n)
   
   alpha = params(1);
   scale = params(2);
-
+  
   % Computing the fit based on the optimally scaled domain and optimised alpha
   xscaled = scale*(x-x(1))/(x(length(x))-x(1));
   result = laguerre_fit(fo, xscaled, n, alpha);

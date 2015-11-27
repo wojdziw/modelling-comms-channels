@@ -10,7 +10,7 @@ clear
 close all
 
 % Generating the exponentially distributed data
-sigma2 = 6; mu = 100;
+sigma2 = 6; mu = 1;
 nsamp = 1e4 ; nbins = 100;
 [fo , x] = exp_data (sigma2, mu, nsamp, nbins);
 

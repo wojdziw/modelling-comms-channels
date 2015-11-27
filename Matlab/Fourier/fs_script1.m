@@ -22,7 +22,7 @@ hold off;
 set(gca, 'FontSize', 18);
 plot(x, c,  '-', 'LineWidth',2, 'Color', [0.7 0 0]); hold on;
 plot(x, s,  '-', 'LineWidth',2, 'Color', [0 0.7 0]); hold on;
-plot(x, cs, '-', 'LineWidth',3, 'Color', [0 0.7 0]); hold on;
+plot(x, cs, '-', 'LineWidth',3, 'Color', [0 0 0.7]); hold on;
 xlabel('x'); ylabel('c,s, c times s');
 print('-depsc', 'fs_script1.eps'); % Save diagram as colour postscript
 

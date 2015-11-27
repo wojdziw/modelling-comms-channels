@@ -1,0 +1,126 @@
+\documentclass[a4paper, fleqn]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{titling}
+\usepackage{bm}
+\usepackage{amsmath}
+\usepackage[numbered, framed]{matlab-prettifier}
+
+\addtolength{\oddsidemargin}{-.875in}
+\addtolength{\evensidemargin}{-.875in}
+\addtolength{\textwidth}{1.75in}
+
+\setlength{\droptitle}{-12em}
+
+\lstset{
+	style              = Matlab-editor,
+	basicstyle         = \mlttfamily\footnotesize,
+	escapechar         = ",
+	mlshowsectionrules = true,
+	tabsize            = 2,
+}
+
+\title{Engineering Computation Project \\ \large Modelling Wireless Communication Channels}
+
+\author{\textbf{Wojciech Dziwulski, Mansfield College}}
+
+\date{}
+
+
+\numberwithin{equation}{section}
+\begin{document}
+\maketitle
+
+\section{Introduction}
+
+This report explores the properties of various orthogonal function sets and their applicability to generating fits to real-life data.
+
+\section{Orthogonality}
+
+Orthogonality is a crucial mathematical concept and extends from the well-known geometrical application (vectors) to the analysis of functions.
+\\ \\
+We can define a set of orthogonal functions $g_0, g_1, \ldots, g_n$ whose linear combination can be used to fit an arbitrary function f:
+\begin{equation}f(x) = a_0 g_0(x)+a_1 g_1(x)+a_2 g_2(x)+\ldots+a_n g_n \end{equation}
+\noindent We then define an inner product operation, for which, conveniently:
+\begin{equation} \langle\,g_n,g_m\rangle = 0 \quad \textrm{if} \quad n \ne m \end{equation}
+So that if we compute the inner product of both LHS and RHS with some arbitrary $g_k$, like:
+\begin{equation} \langle\,f,g_k\rangle = a_0\langle\,g_0,g_k\rangle + a_1\langle\,g_1,g_k\rangle + \ldots + \boldsymbol{a_k\langle\,g_k,g_k\rangle} + \ldots + a_n\langle\,g_n,g_k\rangle \end{equation}
+which lets us calculate the $a_k$ coefficient as:
+\begin{equation} a_k = \frac {\langle\,f,g_k\rangle} {\langle\,g_k,g_k\rangle} \end{equation}
+This result is crucial, as it demonstrates that the coefficients are independent of the size of the orthogonal basis used for the investigation i.e. if more functions are decided to be added, old coefficients do not have to be recomputed.
+\\ \\
+Investigation of orthogonal function fitting can be started with analysing the Fourier series. The set of sines and cosines making up the basis turn out to be orthogonal under integral operation over one period.
+\\
+Even though useful, Fourier series is quite a basic method for function fitting and will not be analysed in detail in this report. We will instead delve into the investigation of two particularly relevant orthogonal basis functions - Gram-Schmidt and Laguerre.
+
+\section{Gram-Schmidt functions}
+
+\subsection{Process}
+
+The Gram-Schmidt process stems from a very simple logic for generating orthogonal functions - choosing a linearly independent basis, and adjusting the consecutive functions appropriately, making sure that every subsequent function is orthogonal to the previous one.
+\\
+Hence having the linearly independent basis $v_0, v_1, v_2, \ldots, v_n$ we can compute the orthogonal functions $g_0, g_1, g_2, \ldots, g_n$ using:
+\begin{equation} g_0(x) = v_0(x) \end{equation}
+\begin{equation} g_1(x) = v_1(x) - e_{10} g_0 (x) \end{equation}
+\begin{equation} g_2(x) = v_2(x) - e_{20} g_0 - e_{21} g_1 (x) \end{equation}
+\begin{equation} g_3(x) = v_3(x) - e_{30} g_0 - e_{31} g_1 (x) - e_{32} g_2 (x)\end{equation}
+
+\noindent As noted before, using the orthogonality property we can now compute the e coefficients:
+\begin{equation} g_n(x) = v_n(x) - e_{n0} g_0 - \ldots - \boldsymbol{e_{nm} g_m (x)} - \ldots - e_{n(n-1)} g_{n-1} (x) \end{equation}
+Taking the inner products:
+\begin{equation} \langle\,g_n,g_m\rangle = \langle\,v_n,g_m\rangle - e_{n0} \langle\,g_0,g_m\rangle - \ldots - \boldsymbol{e_{nm} \langle\,g_m,g_m\rangle} - \ldots - e_{n(n-1)} \langle\,g_{n-1},g_m\rangle \end{equation}
+\begin{equation} \quad \quad 0 \quad = \langle\,v_n,g_m\rangle - \quad \quad 0 \quad \quad - \ldots - \boldsymbol{e_{nm} \langle\,g_m,g_m\rangle} - \ldots - \quad \quad 0 \end{equation}
+\begin{equation} \Rightarrow e_{nm} = \frac{\langle\,v_n,g_m\rangle}{\langle\,g_m,g_m\rangle} \end{equation}
+We can then divide each function by its norm (square root of its inner product with itself) in order to achieve an orthonormal set.
+
+\subsection{Monomial basis}
+
+The independent basis chosen is a set of monomials $v_0 = 1, v_1 = x, v_2 = x^2, \ldots, v_n=x^n$ which will be used to produce an orthogonal basis under operation $\int_{0}^{\infty} g_n g_m e^{-x} dx$.\\
+The code used for polynomial coefficients computation is:
+
+\begin{lstlisting}
+  % Calculating the Gram Schmidt coefficients based on the previous orders
+  for order = 0:n
+    row = order+1;
+    coefficients(row, n+1-order) = ones(row,n+1-order);
+    for power = 1:order
+      v_g_product = gs_inner_product(ones(row,:),coefficients(row-power,:),x);
+      e_coeff = v_g_product/g_g_product(row-power);
+      fprintf('e%0.0f%0.0f equals %0.3f \n',row-1, power-1, e_coeff)
+      coefficients(row, :) = coefficients(row, :) + (-1)*e_coeff*coefficients(row-power, :);
+    end
+    g_g_product(row) = gs_inner_product(coefficients(row,:), coefficients(row,:), x);
+  end
+\end{lstlisting}
+
+\subsection{How to Make Sections and Subsections}
+
+Use section and subsection commands to organize your document. \LaTeX{} handles all the formatting and numbering automatically. Use ref and label commands for cross-references.
+
+\subsection{How to Make Lists}
+
+You can make lists with automatic numbering \dots
+
+\begin{enumerate}
+\item Like this,
+\item and like this.
+\end{enumerate}
+\dots or bullet points \dots
+\begin{itemize}
+\item Like this,
+\item and like this.
+\end{itemize}
+\dots or with words and descriptions \dots
+\begin{description}
+\item[Word] Definition
+\item[Concept] Explanation
+\item[Idea] Text
+\end{description}
+
+We hope you find write\LaTeX\ useful, and please let us know if you have any feedback using the help menu above.
+
+\end{document}
