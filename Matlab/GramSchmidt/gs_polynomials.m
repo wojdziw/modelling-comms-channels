@@ -37,7 +37,7 @@ function coefficients = gs_polynomials(n, x, alternating_ones)
     row = order+1;
     coefficients(row, n+1-order) = ones(row,n+1-order);
     for power = 1:order
-      v_g_product = gs_inner_product(ones(row,:),coefficients(row-power,:),x);
+      v_g_product = gs_inner_product(ones(row,:), coefficients(row-power,:),x);
       e_coeff = v_g_product/g_g_product(row-power);
       coefficients(row, :) = coefficients(row, :) + (-1)*e_coeff*coefficients(row-power, :);
     end

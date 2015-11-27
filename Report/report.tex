@@ -1,28 +1,27 @@
-\documentclass[a4paper, fleqn]{article}
+\documentclass[a4paper]{article}
 
-\usepackage[english]{babel}
-\usepackage[utf8]{inputenc}
-\usepackage{amsmath}
-\usepackage{graphicx}
-\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[T1]{fontenc}
 \usepackage{titling}
-\usepackage{bm}
 \usepackage{amsmath}
+\usepackage{amsfonts}
+\numberwithin{equation}{section}
 \usepackage[numbered, framed]{matlab-prettifier}
+
+\lstset{
+	style              = Matlab-editor,
+	escapechar         = ",
+	mlshowsectionrules = true,
+	tabsize            = 2,
+}
 
 \addtolength{\oddsidemargin}{-.875in}
 \addtolength{\evensidemargin}{-.875in}
 \addtolength{\textwidth}{1.75in}
 
-\setlength{\droptitle}{-12em}
+\addtolength{\topmargin}{-.875in}
+\addtolength{\textheight}{1.75in}
 
-\lstset{
-	style              = Matlab-editor,
-	basicstyle         = \mlttfamily\footnotesize,
-	escapechar         = ",
-	mlshowsectionrules = true,
-	tabsize            = 2,
-}
+\setlength{\droptitle}{-8em}
 
 \title{Engineering Computation Project \\ \large Modelling Wireless Communication Channels}
 
@@ -30,9 +29,8 @@
 
 \date{}
 
-
-\numberwithin{equation}{section}
 \begin{document}
+
 \maketitle
 
 \section{Introduction}
@@ -64,63 +62,81 @@ Even though useful, Fourier series is quite a basic method for function fitting 
 The Gram-Schmidt process stems from a very simple logic for generating orthogonal functions - choosing a linearly independent basis, and adjusting the consecutive functions appropriately, making sure that every subsequent function is orthogonal to the previous one.
 \\
 Hence having the linearly independent basis $v_0, v_1, v_2, \ldots, v_n$ we can compute the orthogonal functions $g_0, g_1, g_2, \ldots, g_n$ using:
-\begin{equation} g_0(x) = v_0(x) \end{equation}
-\begin{equation} g_1(x) = v_1(x) - e_{10} g_0 (x) \end{equation}
-\begin{equation} g_2(x) = v_2(x) - e_{20} g_0 - e_{21} g_1 (x) \end{equation}
-\begin{equation} g_3(x) = v_3(x) - e_{30} g_0 - e_{31} g_1 (x) - e_{32} g_2 (x)\end{equation}
+\begin{align}
+g_0(x) &= v_0(x) \\
+g_1(x) &= v_1(x) - e_{10} g_0 (x) \\
+g_2(x) &= v_2(x) - e_{20} g_0 - e_{21} g_1 (x) \\
+g_3(x) &= v_3(x) - e_{30} g_0 - e_{31} g_1 (x) - e_{32} g_2 (x)
+\end{align}
 
 \noindent As noted before, using the orthogonality property we can now compute the e coefficients:
 \begin{equation} g_n(x) = v_n(x) - e_{n0} g_0 - \ldots - \boldsymbol{e_{nm} g_m (x)} - \ldots - e_{n(n-1)} g_{n-1} (x) \end{equation}
 Taking the inner products:
-\begin{equation} \langle\,g_n,g_m\rangle = \langle\,v_n,g_m\rangle - e_{n0} \langle\,g_0,g_m\rangle - \ldots - \boldsymbol{e_{nm} \langle\,g_m,g_m\rangle} - \ldots - e_{n(n-1)} \langle\,g_{n-1},g_m\rangle \end{equation}
-\begin{equation} \quad \quad 0 \quad = \langle\,v_n,g_m\rangle - \quad \quad 0 \quad \quad - \ldots - \boldsymbol{e_{nm} \langle\,g_m,g_m\rangle} - \ldots - \quad \quad 0 \end{equation}
+\begin{align}
+\langle\,g_n,g_m\rangle &= \langle\,v_n,g_m\rangle - e_{n0} \langle\,g_0,g_m\rangle &- \ldots &- \boldsymbol{e_{nm} \langle\,g_m,g_m\rangle} &- \ldots &- e_{n(n-1)} \langle\,g_{n-1},g_m\rangle \\
+0 &= \langle\,v_n,g_m\rangle - 0 &- \ldots &- \boldsymbol{e_{nm} \langle\,g_m,g_m\rangle} &- \ldots &- 0
+\end{align}
 \begin{equation} \Rightarrow e_{nm} = \frac{\langle\,v_n,g_m\rangle}{\langle\,g_m,g_m\rangle} \end{equation}
 We can then divide each function by its norm (square root of its inner product with itself) in order to achieve an orthonormal set.
 
 \subsection{Monomial basis}
 
 The independent basis chosen is a set of monomials $v_0 = 1, v_1 = x, v_2 = x^2, \ldots, v_n=x^n$ which will be used to produce an orthogonal basis under operation $\int_{0}^{\infty} g_n g_m e^{-x} dx$.\\
-The code used for polynomial coefficients computation is:
+We compute the polynomial coefficients by iteratively multiplying the previous orders' coefficient vectors by the e-scaling factor:
 
-\begin{lstlisting}
-  % Calculating the Gram Schmidt coefficients based on the previous orders
-  for order = 0:n
-    row = order+1;
-    coefficients(row, n+1-order) = ones(row,n+1-order);
-    for power = 1:order
-      v_g_product = gs_inner_product(ones(row,:),coefficients(row-power,:),x);
-      e_coeff = v_g_product/g_g_product(row-power);
-      fprintf('e%0.0f%0.0f equals %0.3f \n',row-1, power-1, e_coeff)
-      coefficients(row, :) = coefficients(row, :) + (-1)*e_coeff*coefficients(row-power, :);
-    end
-    g_g_product(row) = gs_inner_product(coefficients(row,:), coefficients(row,:), x);
-  end
-\end{lstlisting}
+\lstinputlisting[caption={gs\_polynomials.m},label={lst:gspolynomials},firstline=32, lastline=46]{../Matlab/GramSchmidt/gs_polynomials.m}
 
-\subsection{How to Make Sections and Subsections}
+\noindent The leading coefficient of the appropriate orthogonal polynomial is retrieved from the matrix of coefficients of the independent basis ("ones" in listing \ref{lst:gspolynomials}). Interestingly, the Gram Schmidt functions are stored as their polynomial coefficients instead of the y-values calculated over the supplied x-range. \\
+The x-range used for the computation of the Gram Schmidt e factors was chosen so that the marginal improvement over the evaluation accuracy did not exceed 1 \% of the function value, and turned out to be around 70. \\ \\
+All the functions were tested in the gs\_polynomials\_testbench.m file.
 
-Use section and subsection commands to organize your document. \LaTeX{} handles all the formatting and numbering automatically. Use ref and label commands for cross-references.
+\section{Laguerre functions}
 
-\subsection{How to Make Lists}
+Laguerre polynomials are another example of an orthogonal set, under the inner product defined as:
+\begin{equation}
+\langle\,L_n^{(\alpha)}, L_m^{(\alpha)}\rangle=\int_{0}^{\infty} x^{\alpha} e^{-x} L_n^{(\alpha)}(x), L_m^{(\alpha)}(x)dx = 
+\begin{cases} 
+      \frac{\Gamma(n+\alpha+1)}{\Gamma(n+1)} \quad \textrm{for} \quad m = n \\
+      0 \quad \quad \quad \quad \quad \textrm{otherwise}
+\end{cases}
+\end{equation}
+We are going to explore two methods of computing their coefficients and subsequently fit them to a real dataset.
 
-You can make lists with automatic numbering \dots
+\subsection{Rodrigues formula}
 
-\begin{enumerate}
-\item Like this,
-\item and like this.
-\end{enumerate}
-\dots or bullet points \dots
-\begin{itemize}
-\item Like this,
-\item and like this.
-\end{itemize}
-\dots or with words and descriptions \dots
-\begin{description}
-\item[Word] Definition
-\item[Concept] Explanation
-\item[Idea] Text
-\end{description}
+Using the Rodrigues formula, the n-th associated Laguerre polynomial is:
+\begin{equation}
+L_n^{(\alpha)}(x)=\frac{1}{n!}x^{-\alpha}e^x\frac{d^n}{dx^n}(x^{n+\alpha}e^{-x}), \quad\quad n \in \mathbb{N}, \alpha \in \mathbb{R}
+\end{equation}
+noting that after differentiation the $x^{-\alpha}$ and ${e^x}$ cancel out, all we have to do is calculate the coefficients of the differentiated product using the Leibniz rule:
+\begin{equation}
+(f \cdot g)^{(n)} = \sum_{k=1}^{n} \binom{n}{k} f^k g^{n-k}
+\end{equation}
+This is accomplished by first recursively calculating the $x^n$ coefficients and then calculating them by the rest of the appropriate product:
 
-We hope you find write\LaTeX\ useful, and please let us know if you have any feedback using the help menu above.
+\lstinputlisting[caption={rodrigues\_laguerre.m},label={lst:rodrigueslaguerre},firstline=23, lastline=30]{../Matlab/Laguerre/rodrigues_laguerre.m}
+
+Noting, however, that the Rodrigues formula is computationally inefficient due to the repeated calculation of the derivative coefficients, we turn onto a different method: the recursive method.
+
+\subsection{Recursive method}
+
+This method takes the advantage of the successive polynomial generation using the formula:
+\begin{equation}
+n L_n^{(\alpha)}(x) = (2n + \alpha + 1 - x) L_{n-1}^{(\alpha)}(x) - (n + \alpha - 1) L_{n-2}^{(\alpha)}(x)
+\end{equation}
+with:
+\begin{align}
+L_0^{(\alpha)}(x) &= 1 \\
+L_1^{(\alpha)}(x) &= -x+\alpha+1
+\end{align}
+This is achieved by the fairly simple:
+\lstinputlisting[caption={recursive\_laguerre.m},label={lst:recursivelaguerre},firstline=27, lastline=35]{../Matlab/Laguerre/recursive_laguerre.m}
+
+\noindent Note the use of the \textit{circshift} function in order to simulate multiplication by the coefficient vector by the variable $x$.\\
+For $\alpha = 0$ the Laguerre plots using the method above looked exactly as expected.
+
+\subsection{Gram-Schmidt Laguerre comparison}
+
+It is easy to note that under $alpha = 0$ the inner product operations for Laguerre and Gram-Schmidt polynomials look identical. This motivated further investigation of both of the orthogonal sets which yielded:
 
 \end{document}

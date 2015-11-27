@@ -2,11 +2,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % fs_triangle.m DWM 6/9/10
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  function fs_weirdtriangle(T,nint,nterms)
+  function fs_narrowbasistriangle(T,nint,nterms)
   w = 2*pi/T;                   % Derive omega
                                 % Integral from -T/2 to +T/2
   x = (-T/2:T/nint:T/2);        % Make vector of x values
-  f = fs_weirdperiodictriangle(T,x,0.1); % Make vector of f(x) values
+  f = fs_narrowbasisperiodictriangle(T,x,0.1); % Make vector of f(x) values
 % Compute coefficients 
   A0 = fs_Acoeff(T,0,f,x);      % A0 done separately
   for m=1:1:nterms

@@ -5,7 +5,7 @@
 % Takes care not to assume x(i) is between -T/2 and +T/2
 % jpc 11/10/13
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  function t = fs_weirdperiodictriangle(T,x,a)
+  function t = fs_narrowbasisperiodictriangle(T,x,a)
   for i=1:length(x)
 % First scale x(i) and shift to the right, 
 % so v has unit period defined by the interval [0,1].
