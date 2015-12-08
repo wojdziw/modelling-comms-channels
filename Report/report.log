@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.23)  8 DEC 2015 14:38
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.23)  8 DEC 2015 15:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -197,6 +197,44 @@ Package caption3 Info: TeX engine: e-TeX on input line 57.
 \sf@top=\skip56
 \sf@bottom=\skip57
 )
+(/home/wojtek/texmf/tex/latex/geometry/geometry.sty
+Package: geometry 2010/09/12 v5.6 Page Geometry
+
+(/home/wojtek/texmf/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+)
+(/home/wojtek/texmf/tex/generic/oberdiek/ifvtex.sty
+Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+)
+(/home/wojtek/texmf/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+\Gm@cnth=\count112
+\Gm@cntv=\count113
+\c@Gm@tempcnt=\count114
+\Gm@bindingoffset=\dimen131
+\Gm@wd@mp=\dimen132
+\Gm@odd@mp=\dimen133
+\Gm@even@mp=\dimen134
+\Gm@layoutwidth=\dimen135
+\Gm@layoutheight=\dimen136
+\Gm@layouthoffset=\dimen137
+\Gm@layoutvoffset=\dimen138
+\Gm@dimlist=\toks20
+)
+(/home/wojtek/texmf/tex/latex/fancyhdr/fancyhdr.sty
+\fancy@headwidth=\skip58
+\f@ncyO@elh=\skip59
+\f@ncyO@erh=\skip60
+\f@ncyO@olh=\skip61
+\f@ncyO@orh=\skip62
+\f@ncyO@elf=\skip63
+\f@ncyO@erf=\skip64
+\f@ncyO@olf=\skip65
+\f@ncyO@orf=\skip66
+)
 (/home/wojtek/texmf/tex/latex/matlab-prettifier/matlab-prettifier.sty
 Package: matlab-prettifier 2014/06/19 v0.3 A package for prettyprinting Matlab 
 source code
@@ -301,72 +339,72 @@ Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
 )
 (/home/wojtek/texmf/tex/latex/listings/listings.sty
-\lst@mode=\count112
+\lst@mode=\count115
 \lst@gtempboxa=\box28
-\lst@token=\toks20
-\lst@length=\count113
-\lst@currlwidth=\dimen131
-\lst@column=\count114
-\lst@pos=\count115
-\lst@lostspace=\dimen132
-\lst@width=\dimen133
-\lst@newlines=\count116
-\lst@lineno=\count117
-\lst@maxwidth=\dimen134
+\lst@token=\toks21
+\lst@length=\count116
+\lst@currlwidth=\dimen139
+\lst@column=\count117
+\lst@pos=\count118
+\lst@lostspace=\dimen140
+\lst@width=\dimen141
+\lst@newlines=\count119
+\lst@lineno=\count120
+\lst@maxwidth=\dimen142
 
 (/home/wojtek/texmf/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
-\c@lstnumber=\count118
-\lst@skipnumbers=\count119
+\c@lstnumber=\count121
+\lst@skipnumbers=\count122
 \lst@framebox=\box29
 )
 (/home/wojtek/texmf/tex/latex/listings/listings.cfg
 File: listings.cfg 2015/06/04 1.6 listings configuration
 ))
 Package: listings 2015/06/04 1.6 (Carsten Heinz)
-\netBracketCount@mlpr=\count120
-\blkLvl@mlpr=\count121
-\blkLvlAtClassdef@mlpr=\count122
-\emHeight@mlpr=\skip58
-\jayDepth@mlpr=\skip59
-\sectionRuleOffset@mlpr=\skip60
-\toks@mlpr=\toks21
+\netBracketCount@mlpr=\count123
+\blkLvl@mlpr=\count124
+\blkLvlAtClassdef@mlpr=\count125
+\emHeight@mlpr=\skip67
+\jayDepth@mlpr=\skip68
+\sectionRuleOffset@mlpr=\skip69
+\toks@mlpr=\toks22
 ) (./report.aux)
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 36.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 36.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 40.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 40.
 
 (/home/wojtek/texmf/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    ... okay on input line 40.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count123
-\scratchdimen=\dimen135
+\scratchcounter=\count126
+\scratchdimen=\dimen143
 \scratchbox=\box30
-\nofMPsegments=\count124
-\nofMParguments=\count125
-\everyMPshowfont=\toks22
-\MPscratchCnt=\count126
-\MPscratchDim=\dimen136
-\MPnumerator=\count127
-\makeMPintoPDFobject=\count128
-\everyMPtoPDFconversion=\toks23
+\nofMPsegments=\count127
+\nofMParguments=\count128
+\everyMPshowfont=\toks23
+\MPscratchCnt=\count129
+\MPscratchDim=\dimen144
+\MPnumerator=\count130
+\makeMPintoPDFobject=\count131
+\everyMPtoPDFconversion=\toks24
 ) (/home/wojtek/texmf/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -374,10 +412,6 @@ Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 (/home/wojtek/texmf/tex/generic/oberdiek/ifluatex.sty
 Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
 Package ifluatex Info: LuaTeX not detected.
-)
-(/home/wojtek/texmf/tex/generic/oberdiek/ifpdf.sty
-Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
-Package ifpdf Info: pdfTeX in PDF mode is detected.
 )
 Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
@@ -419,36 +453,70 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\c@lstlisting=\count129
-LaTeX Font Info:    Try loading font information for U+msa on input line 38.
 
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: includehead includefoot 
+* h-part:(L,W,R)=(36.135pt, 525.23788pt, 36.135pt)
+* v-part:(T,H,B)=(36.135pt, 772.77686pt, 36.135pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=525.23788pt
+* \textheight=705.77686pt
+* \oddsidemargin=-36.135pt
+* \evensidemargin=-36.135pt
+* \topmargin=-36.135pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=57.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+\c@lstlisting=\count132
+LaTeX Font Info:    Try loading font information for U+msa on input line 42.
 (/home/wojtek/texmf/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 38.
+LaTeX Font Info:    Try loading font information for U+msb on input line 42.
 
 (/home/wojtek/texmf/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \hbox (badness 10000) in paragraph at lines 46--49
+Underfull \hbox (badness 10000) in paragraph at lines 50--53
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 55--61
+Underfull \hbox (badness 10000) in paragraph at lines 59--65
 
  []
 
 [1
 
 {/home/wojtek/.texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 91.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 95.
 
 (/home/wojtek/texmf/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 (../Matlab/GramSchmidt/gs_polynomials.m)
-Underfull \hbox (badness 10000) in paragraph at lines 93--96
+Underfull \hbox (badness 10000) in paragraph at lines 97--100
 
  []
 
@@ -463,7 +531,7 @@ f>
 (epstopdf)                    size: 67193 bytes
 (epstopdf)             Command: <repstopdf --outfile=gs_laguerre_comparison-eps
 -converted-to.pdf gs_laguerre_comparison.eps>
-(epstopdf)             \includegraphics on input line 148.
+(epstopdf)             \includegraphics on input line 152.
 Package epstopdf Info: Output file is already uptodate.
 
 <gs_laguerre_comparison-eps-converted-to.pdf, id=27, 495.8525pt x 391.4625pt>
@@ -471,10 +539,10 @@ File: gs_laguerre_comparison-eps-converted-to.pdf Graphic file (type pdf)
 
 <use gs_laguerre_comparison-eps-converted-to.pdf>
 Package pdftex.def Info: gs_laguerre_comparison-eps-converted-to.pdf used on in
-put line 148.
-(pdftex.def)             Requested size: 377.17943pt x 297.7774pt.
+put line 152.
+(pdftex.def)             Requested size: 315.14594pt x 248.8029pt.
  [3]
-Underfull \hbox (badness 10000) in paragraph at lines 174--179
+Underfull \hbox (badness 10000) in paragraph at lines 178--183
 
  []
 
@@ -487,7 +555,7 @@ o.pdf>
 (epstopdf)                    size: 66001 bytes
 (epstopdf)             Command: <repstopdf --outfile=associated_laguerre_alpha5
 -eps-converted-to.pdf associated_laguerre_alpha5.eps>
-(epstopdf)             \includegraphics on input line 189.
+(epstopdf)             \includegraphics on input line 193.
 Package epstopdf Info: Output file is already uptodate.
 
 <associated_laguerre_alpha5-eps-converted-to.pdf, id=32, 410.53375pt x 309.155p
@@ -495,8 +563,8 @@ t>
 File: associated_laguerre_alpha5-eps-converted-to.pdf Graphic file (type pdf)
  <use associated_laguerre_alpha5-eps-converted-to.pdf>
 Package pdftex.def Info: associated_laguerre_alpha5-eps-converted-to.pdf used o
-n input line 189.
-(pdftex.def)             Requested size: 212.16118pt x 159.76616pt.
+n input line 193.
+(pdftex.def)             Requested size: 236.35544pt x 177.98917pt.
 Package epstopdf Info: Source file: <associated_laguerre.eps>
 (epstopdf)                    date: 2015-12-08 13:11:14
 (epstopdf)                    size: 117984 bytes
@@ -505,7 +573,7 @@ Package epstopdf Info: Source file: <associated_laguerre.eps>
 (epstopdf)                    size: 52370 bytes
 (epstopdf)             Command: <repstopdf --outfile=associated_laguerre-eps-co
 nverted-to.pdf associated_laguerre.eps>
-(epstopdf)             \includegraphics on input line 190.
+(epstopdf)             \includegraphics on input line 194.
 Package epstopdf Info: Output file is already uptodate.
 
 <associated_laguerre-eps-converted-to.pdf, id=33, 411.5375pt x 309.155pt>
@@ -513,8 +581,8 @@ File: associated_laguerre-eps-converted-to.pdf Graphic file (type pdf)
 
 <use associated_laguerre-eps-converted-to.pdf>
 Package pdftex.def Info: associated_laguerre-eps-converted-to.pdf used on input
- line 190.
-(pdftex.def)             Requested size: 212.16118pt x 159.37935pt.
+ line 194.
+(pdftex.def)             Requested size: 236.35544pt x 177.55518pt.
  [4 <./gs_laguerre_comparison-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <exp_data.eps>
 (epstopdf)                    date: 2015-12-02 17:15:41
@@ -524,15 +592,15 @@ Package epstopdf Info: Source file: <exp_data.eps>
 (epstopdf)                    size: 18536 bytes
 (epstopdf)             Command: <repstopdf --outfile=exp_data-eps-converted-to.
 pdf exp_data.eps>
-(epstopdf)             \includegraphics on input line 224.
+(epstopdf)             \includegraphics on input line 228.
 Package epstopdf Info: Output file is already uptodate.
 
 <exp_data-eps-converted-to.pdf, id=44, 1043.9pt x 554.07pt>
 File: exp_data-eps-converted-to.pdf Graphic file (type pdf)
 
 <use exp_data-eps-converted-to.pdf>
-Package pdftex.def Info: exp_data-eps-converted-to.pdf used on input line 224.
-(pdftex.def)             Requested size: 377.17943pt x 200.19212pt.
+Package pdftex.def Info: exp_data-eps-converted-to.pdf used on input line 228.
+(pdftex.def)             Requested size: 315.14594pt x 167.27063pt.
  [5 <./associated_laguerre_alpha5-eps-converted-to.pdf> <./associated_laguerre-
 eps-converted-to.pdf>]
 (../Matlab/FittingData/laguerre_fit.m)
@@ -544,16 +612,16 @@ Package epstopdf Info: Source file: <basic_fit.eps>
 (epstopdf)                    size: 7424 bytes
 (epstopdf)             Command: <repstopdf --outfile=basic_fit-eps-converted-to
 .pdf basic_fit.eps>
-(epstopdf)             \includegraphics on input line 246.
+(epstopdf)             \includegraphics on input line 250.
 Package epstopdf Info: Output file is already uptodate.
 
 <basic_fit-eps-converted-to.pdf, id=61, 410.53375pt x 309.155pt>
 File: basic_fit-eps-converted-to.pdf Graphic file (type pdf)
 
 <use basic_fit-eps-converted-to.pdf>
-Package pdftex.def Info: basic_fit-eps-converted-to.pdf used on input line 246.
+Package pdftex.def Info: basic_fit-eps-converted-to.pdf used on input line 250.
 
-(pdftex.def)             Requested size: 235.73624pt x 177.52216pt.
+(pdftex.def)             Requested size: 262.61894pt x 197.76418pt.
  [6 <./exp_data-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <laguerre_parameterised_fit.eps>
 (epstopdf)                    date: 2015-12-07 15:44:29
@@ -564,7 +632,7 @@ o.pdf>
 (epstopdf)                    size: 9846 bytes
 (epstopdf)             Command: <repstopdf --outfile=laguerre_parameterised_fit
 -eps-converted-to.pdf laguerre_parameterised_fit.eps>
-(epstopdf)             \includegraphics on input line 266.
+(epstopdf)             \includegraphics on input line 270.
 Package epstopdf Info: Output file is already uptodate.
 
 <laguerre_parameterised_fit-eps-converted-to.pdf, id=71, 1104.125pt x 659.46375
@@ -572,8 +640,8 @@ pt>
 File: laguerre_parameterised_fit-eps-converted-to.pdf Graphic file (type pdf)
  <use laguerre_parameterised_fit-eps-converted-to.pdf>
 Package pdftex.def Info: laguerre_parameterised_fit-eps-converted-to.pdf used o
-n input line 266.
-(pdftex.def)             Requested size: 377.17943pt x 225.28134pt.
+n input line 270.
+(pdftex.def)             Requested size: 315.14594pt x 188.23087pt.
 Package epstopdf Info: Source file: <lfit_order1_alpha2.eps>
 (epstopdf)                    date: 2015-12-07 15:58:59
 (epstopdf)                    size: 14938 bytes
@@ -582,7 +650,7 @@ Package epstopdf Info: Source file: <lfit_order1_alpha2.eps>
 (epstopdf)                    size: 9207 bytes
 (epstopdf)             Command: <repstopdf --outfile=lfit_order1_alpha2-eps-con
 verted-to.pdf lfit_order1_alpha2.eps>
-(epstopdf)             \includegraphics on input line 277.
+(epstopdf)             \includegraphics on input line 281.
 Package epstopdf Info: Output file is already uptodate.
 
 <lfit_order1_alpha2-eps-converted-to.pdf, id=72, 410.53375pt x 309.155pt>
@@ -590,8 +658,8 @@ File: lfit_order1_alpha2-eps-converted-to.pdf Graphic file (type pdf)
 
 <use lfit_order1_alpha2-eps-converted-to.pdf>
 Package pdftex.def Info: lfit_order1_alpha2-eps-converted-to.pdf used on input 
-line 277.
-(pdftex.def)             Requested size: 188.5861pt x 142.0149pt.
+line 281.
+(pdftex.def)             Requested size: 210.09193pt x 158.20944pt.
 Package epstopdf Info: Source file: <lfit_order1_alpha4.eps>
 (epstopdf)                    date: 2015-12-07 16:00:08
 (epstopdf)                    size: 15077 bytes
@@ -600,7 +668,7 @@ Package epstopdf Info: Source file: <lfit_order1_alpha4.eps>
 (epstopdf)                    size: 9210 bytes
 (epstopdf)             Command: <repstopdf --outfile=lfit_order1_alpha4-eps-con
 verted-to.pdf lfit_order1_alpha4.eps>
-(epstopdf)             \includegraphics on input line 278.
+(epstopdf)             \includegraphics on input line 282.
 Package epstopdf Info: Output file is already uptodate.
 
 <lfit_order1_alpha4-eps-converted-to.pdf, id=73, 410.53375pt x 309.155pt>
@@ -608,8 +676,8 @@ File: lfit_order1_alpha4-eps-converted-to.pdf Graphic file (type pdf)
 
 <use lfit_order1_alpha4-eps-converted-to.pdf>
 Package pdftex.def Info: lfit_order1_alpha4-eps-converted-to.pdf used on input 
-line 278.
-(pdftex.def)             Requested size: 188.5861pt x 142.0149pt.
+line 282.
+(pdftex.def)             Requested size: 210.09193pt x 158.20944pt.
 Package epstopdf Info: Source file: <lfit_order4_alpha2.eps>
 (epstopdf)                    date: 2015-12-07 16:10:08
 (epstopdf)                    size: 14964 bytes
@@ -618,7 +686,7 @@ Package epstopdf Info: Source file: <lfit_order4_alpha2.eps>
 (epstopdf)                    size: 9225 bytes
 (epstopdf)             Command: <repstopdf --outfile=lfit_order4_alpha2-eps-con
 verted-to.pdf lfit_order4_alpha2.eps>
-(epstopdf)             \includegraphics on input line 279.
+(epstopdf)             \includegraphics on input line 283.
 Package epstopdf Info: Output file is already uptodate.
 
 <lfit_order4_alpha2-eps-converted-to.pdf, id=74, 410.53375pt x 309.155pt>
@@ -626,8 +694,8 @@ File: lfit_order4_alpha2-eps-converted-to.pdf Graphic file (type pdf)
 
 <use lfit_order4_alpha2-eps-converted-to.pdf>
 Package pdftex.def Info: lfit_order4_alpha2-eps-converted-to.pdf used on input 
-line 279.
-(pdftex.def)             Requested size: 188.5861pt x 142.0149pt.
+line 283.
+(pdftex.def)             Requested size: 210.09193pt x 158.20944pt.
 Package epstopdf Info: Source file: <lfit_order4_alpha4.eps>
 (epstopdf)                    date: 2015-12-07 16:09:32
 (epstopdf)                    size: 14955 bytes
@@ -636,7 +704,7 @@ Package epstopdf Info: Source file: <lfit_order4_alpha4.eps>
 (epstopdf)                    size: 9181 bytes
 (epstopdf)             Command: <repstopdf --outfile=lfit_order4_alpha4-eps-con
 verted-to.pdf lfit_order4_alpha4.eps>
-(epstopdf)             \includegraphics on input line 280.
+(epstopdf)             \includegraphics on input line 284.
 Package epstopdf Info: Output file is already uptodate.
 
 <lfit_order4_alpha4-eps-converted-to.pdf, id=75, 402.50375pt x 285.065pt>
@@ -644,11 +712,10 @@ File: lfit_order4_alpha4-eps-converted-to.pdf Graphic file (type pdf)
 
 <use lfit_order4_alpha4-eps-converted-to.pdf>
 Package pdftex.def Info: lfit_order4_alpha4-eps-converted-to.pdf used on input 
-line 280.
-(pdftex.def)             Requested size: 188.5861pt x 133.56299pt.
- [7 <./basic_fit-eps-converted-to.pdf> <./laguerre_parameterised_fit-eps-conver
-ted-to.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 285--286
+line 284.
+(pdftex.def)             Requested size: 210.09193pt x 148.79141pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 289--290
 
  []
 
@@ -660,36 +727,36 @@ Package epstopdf Info: Source file: <poor_fit.eps>
 (epstopdf)                    size: 9351 bytes
 (epstopdf)             Command: <repstopdf --outfile=poor_fit-eps-converted-to.
 pdf poor_fit.eps>
-(epstopdf)             \includegraphics on input line 291.
+(epstopdf)             \includegraphics on input line 295.
 Package epstopdf Info: Output file is already uptodate.
-<poor_fit-eps-converted-to.pdf, id=91, 1104.125pt x 659.46375pt>
+<poor_fit-eps-converted-to.pdf, id=76, 1104.125pt x 659.46375pt>
 File: poor_fit-eps-converted-to.pdf Graphic file (type pdf)
 
 <use poor_fit-eps-converted-to.pdf>
-Package pdftex.def Info: poor_fit-eps-converted-to.pdf used on input line 291.
-(pdftex.def)             Requested size: 377.17943pt x 225.28134pt.
+Package pdftex.def Info: poor_fit-eps-converted-to.pdf used on input line 295.
+(pdftex.def)             Requested size: 315.14594pt x 188.23087pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 309--311
+[7 <./basic_fit-eps-converted-to.pdf> <./laguerre_parameterised_fit-eps-convert
+ed-to.pdf>] [8 <./lfit_order1_alpha2-eps-converted-to.pdf> <./lfit_order1_alpha
+4-eps-converted-to.pdf> <./lfit_order4_alpha2-eps-converted-to.pdf> <./lfit_ord
+er4_alpha4-eps-converted-to.pdf> <./poor_fit-eps-converted-to.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 313--315
 
  []
 
-[8 <./lfit_order1_alpha2-eps-converted-to.pdf> <./lfit_order1_alpha4-eps-conver
-ted-to.pdf> <./lfit_order4_alpha2-eps-converted-to.pdf> <./lfit_order4_alpha4-e
-ps-converted-to.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 312--313
+
+Underfull \hbox (badness 10000) in paragraph at lines 316--317
 
  []
 
 (../Matlab/FittingData/fitting_error.m)
-Underfull \hbox (badness 10000) in paragraph at lines 318--319
+Underfull \hbox (badness 10000) in paragraph at lines 322--323
 
  []
 
-[9 <./poor_fit-eps-converted-to.pdf>]
 (../Matlab/FittingData/laguerre_optimal_fit.m)
 Package epstopdf Info: Source file: <real_data_fit.eps>
 (epstopdf)                    date: 2015-12-08 14:08:16
@@ -699,45 +766,45 @@ Package epstopdf Info: Source file: <real_data_fit.eps>
 (epstopdf)                    size: 9558 bytes
 (epstopdf)             Command: <repstopdf --outfile=real_data_fit-eps-converte
 d-to.pdf real_data_fit.eps>
-(epstopdf)             \includegraphics on input line 329.
+(epstopdf)             \includegraphics on input line 333.
 Package epstopdf Info: Output file is already uptodate.
 
-<real_data_fit-eps-converted-to.pdf, id=128, 1104.125pt x 659.46375pt>
+<real_data_fit-eps-converted-to.pdf, id=125, 1104.125pt x 659.46375pt>
 File: real_data_fit-eps-converted-to.pdf Graphic file (type pdf)
 
 <use real_data_fit-eps-converted-to.pdf>
 Package pdftex.def Info: real_data_fit-eps-converted-to.pdf used on input line 
-329.
-(pdftex.def)             Requested size: 377.17943pt x 225.28134pt.
- [10 <./real_data_fit-eps-converted-to.pdf>] (./report.aux) ) 
+333.
+(pdftex.def)             Requested size: 315.14594pt x 188.23087pt.
+ [9] [10 <./real_data_fit-eps-converted-to.pdf>] (./report.aux) ) 
 Here is how much of TeX's memory you used:
- 6709 strings out of 495028
- 99994 string characters out of 6181497
- 234055 words of memory out of 5000000
- 9776 multiletter control sequences out of 15000+600000
+ 7311 strings out of 495028
+ 108211 string characters out of 6181497
+ 259984 words of memory out of 5000000
+ 10364 multiletter control sequences out of 15000+600000
  21763 words of font info for 62 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  44i,14n,54p,717b,1041s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/home/wojtek/texm
-f/fonts/enc/dvips/cm-super/cm-super-ts1.enc}{/home/wojtek/texmf/fonts/enc/dvips
-/cm-super/cm-super-t1.enc}</home/wojtek/texmf/fonts/type1/public/amsfonts/cm/cm
-bsy10.pfb></home/wojtek/texmf/fonts/type1/public/amsfonts/cm/cmbx10.pfb></home/
-wojtek/texmf/fonts/type1/public/amsfonts/cm/cmex10.pfb></home/wojtek/texmf/font
-s/type1/public/amsfonts/cm/cmmi10.pfb></home/wojtek/texmf/fonts/type1/public/am
-sfonts/cm/cmmi7.pfb></home/wojtek/texmf/fonts/type1/public/amsfonts/cm/cmmib10.
-pfb></home/wojtek/texmf/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb></home/w
-ojtek/texmf/fonts/type1/public/amsfonts/cm/cmr10.pfb></home/wojtek/texmf/fonts/
-type1/public/amsfonts/cm/cmr7.pfb></home/wojtek/texmf/fonts/type1/public/amsfon
-ts/cm/cmsy10.pfb></home/wojtek/texmf/fonts/type1/public/amsfonts/cm/cmsy7.pfb><
-/home/wojtek/texmf/fonts/type1/public/amsfonts/symbols/msbm10.pfb></home/wojtek
-/texmf/fonts/type1/public/cm-super/sfbx1000.pfb></home/wojtek/texmf/fonts/type1
-/public/cm-super/sfbx1200.pfb></home/wojtek/texmf/fonts/type1/public/cm-super/s
-fbx1440.pfb></home/wojtek/texmf/fonts/type1/public/cm-super/sfrm0800.pfb></home
-/wojtek/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></home/wojtek/texmf/font
-s/type1/public/cm-super/sfrm1200.pfb></home/wojtek/texmf/fonts/type1/public/cm-
-super/sfrm1728.pfb></home/wojtek/texmf/fonts/type1/public/cm-super/sfti1000.pfb
-></home/wojtek/texmf/fonts/type1/public/cm-super/sftt1000.pfb>
-Output written on report.pdf (10 pages, 536494 bytes).
+{/home/wojtek/
+texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}{/home/wojtek/texmf/fonts/enc/d
+vips/cm-super/cm-super-t1.enc}</home/wojtek/texmf/fonts/type1/public/amsfonts/c
+m/cmbsy10.pfb></home/wojtek/texmf/fonts/type1/public/amsfonts/cm/cmbx10.pfb></h
+ome/wojtek/texmf/fonts/type1/public/amsfonts/cm/cmex10.pfb></home/wojtek/texmf/
+fonts/type1/public/amsfonts/cm/cmmi10.pfb></home/wojtek/texmf/fonts/type1/publi
+c/amsfonts/cm/cmmi7.pfb></home/wojtek/texmf/fonts/type1/public/amsfonts/cm/cmmi
+b10.pfb></home/wojtek/texmf/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb></ho
+me/wojtek/texmf/fonts/type1/public/amsfonts/cm/cmr10.pfb></home/wojtek/texmf/fo
+nts/type1/public/amsfonts/cm/cmr7.pfb></home/wojtek/texmf/fonts/type1/public/am
+sfonts/cm/cmsy10.pfb></home/wojtek/texmf/fonts/type1/public/amsfonts/cm/cmsy7.p
+fb></home/wojtek/texmf/fonts/type1/public/amsfonts/symbols/msbm10.pfb></home/wo
+jtek/texmf/fonts/type1/public/cm-super/sfbx1000.pfb></home/wojtek/texmf/fonts/t
+ype1/public/cm-super/sfbx1200.pfb></home/wojtek/texmf/fonts/type1/public/cm-sup
+er/sfbx1440.pfb></home/wojtek/texmf/fonts/type1/public/cm-super/sfrm0800.pfb></
+home/wojtek/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></home/wojtek/texmf/
+fonts/type1/public/cm-super/sfrm1200.pfb></home/wojtek/texmf/fonts/type1/public
+/cm-super/sfrm1728.pfb></home/wojtek/texmf/fonts/type1/public/cm-super/sfti1000
+.pfb></home/wojtek/texmf/fonts/type1/public/cm-super/sftt1000.pfb>
+Output written on report.pdf (10 pages, 537047 bytes).
 PDF statistics:
  208 PDF objects out of 1000 (max. 8388607)
  149 compressed objects within 2 object streams

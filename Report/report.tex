@@ -7,6 +7,15 @@
 \usepackage{graphicx}
 \usepackage{mathtools}
 \usepackage{subfig}
+\usepackage[includeheadfoot,margin=0.5in]{geometry}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\rhead{mans2904}
+\lhead{Wojciech Dziwulski}
+
+\renewcommand{\headrulewidth}{0.5pt}
 
 \numberwithin{equation}{section}
 \usepackage[numbered, framed]{matlab-prettifier}
@@ -18,12 +27,7 @@
 	tabsize            = 2,
 }
 
-\addtolength{\oddsidemargin}{-.875in}
-\addtolength{\evensidemargin}{-.875in}
-\addtolength{\textwidth}{1.75in}
 
-\addtolength{\topmargin}{-.875in}
-\addtolength{\textheight}{1.75in}
 
 \setlength{\droptitle}{-8em}
 
@@ -145,7 +149,7 @@ It is easy to note that under $alpha = 0$ the inner product operations for Lague
 
 \begin{figure}
 \centering
-\includegraphics[width=0.8\textwidth]{gs_laguerre_comparison.eps}
+\includegraphics[width=0.6\textwidth]{gs_laguerre_comparison.eps}
 \caption{\label{fig:gslaguerrecomparison}Comparison between the Gram Schmidt and Laguerre polynomials up to order 5.}
 \end{figure}
 
@@ -221,7 +225,7 @@ In order to plot the data, we generate a histogram with a prescribed number of b
 
 \begin{figure}
 \centering
-\includegraphics[width=0.8\textwidth]{exp_data.eps}
+\includegraphics[width=0.6\textwidth]{exp_data.eps}
 \caption{\label{fig:expdata}Exponentially distributed data.}
 \end{figure}
 
@@ -263,7 +267,7 @@ f(x) = \frac{1}{2} e^{-x/2}
 
 \begin{figure}[!h]
 \centering
-\includegraphics[width=0.8\textwidth]{laguerre_parameterised_fit.eps}
+\includegraphics[width=0.6\textwidth]{laguerre_parameterised_fit.eps}
 \caption{\label{fig:laguerreparemeterisedfit}Exponentially generated data, ideal parameterised fit(red) and the Laguerre fit (blue).}
 \end{figure}
 
@@ -288,7 +292,7 @@ It is clear that an orthonormal set of functions is best used for fitting in the
 
 \begin{figure}[!h]
 \centering
-\includegraphics[width=0.8\textwidth]{poor_fit.eps}
+\includegraphics[width=0.6\textwidth]{poor_fit.eps}
 \caption{\label{fig:poorfit}A fifth order Laguerre fit for $alpha=5$ with random data generated for $\sigma^2=1/3, \mu=5, n_{samples} = 10000, n_{bins} = 1000$}
 \end{figure}
 
@@ -326,7 +330,7 @@ Comparing the Associated Laguerre functions for $\alpha = 0$ and $\alpha = 5$ in
 
 \begin{figure}[!h]
 \centering
-\includegraphics[width=0.8\textwidth]{real_data_fit.eps}
+\includegraphics[width=0.6\textwidth]{real_data_fit.eps}
 \caption{\label{fig:realdataset}A Laguerre fit to the measured dataset}
 \end{figure}
 
