@@ -30,7 +30,7 @@ title('Histogram points for measured data');
 grid on
 
 %%% Your code here %%%
-laguerre = laguerre_optimal_fit(fo,xi,2);
+laguerre = laguerre_optimal_fit(fo,xi,5);
 
 % Calculating the error
 error = trapz(xi, (laguerre-fo).^2);

@@ -29,18 +29,6 @@ function result = laguerre_optimal_fit(fo, x, n)
   xscaled = lambda*(x-x(1))/(x(length(x))-x(1));
   result = laguerre_fit(fo, xscaled, n, alpha);
   
-  error_alpha5 = fitting_error(fo, x, n, params);    
   
-  
-  % Recomputing with alpha = 0 (for functions concentrated near the origin)
-  alpha_guess = 0;
-  lambda_guess = 10;
-  params = fminsearch(@(params) fitting_error(fo, x, n, params), [alpha_guess, lambda_guess]);
-  alpha = params(1);
-  lambda = params(2);
-  xscaled = lambda*(x-x(1))/(x(length(x))-x(1));
-  result0 = laguerre_fit(fo, xscaled, n, alpha);
-  error_alpha0 = fitting_error(fo, x, n, params);
-  
-  if (error_alpha5 > error_alpha0) result = result0;
+    
 end

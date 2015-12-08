@@ -12,7 +12,7 @@ close all
 
 n = 5;
 x = 0:0.0001:70;
-alpha = 0.2;
+alpha = 5;
 
 % Computing the values of the associated Laguerre functions
 a_laguerres = associated_laguerre(n, alpha, x);

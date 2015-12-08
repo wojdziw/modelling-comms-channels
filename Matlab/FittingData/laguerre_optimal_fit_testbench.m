@@ -10,7 +10,7 @@ clear
 close all
 
 % Generating the exponentially distributed data
-sigma2 = 6; mu = 1;
+sigma2 = 6; mu = 0;
 nsamp = 1e4 ; nbins = 100;
 [fo , x] = exp_data (sigma2, mu, nsamp, nbins);
 
@@ -19,7 +19,7 @@ n = 5;
 laguerre = laguerre_optimal_fit(fo,x,n);
 
 % Plotting the data
-plot(x, fo, 'k.','LineWidth',1.2)
+plot(x, fo, 'kx','LineWidth',1.2)
 grid on
 
 hold on;
