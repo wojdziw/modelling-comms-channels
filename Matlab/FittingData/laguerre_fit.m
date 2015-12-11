@@ -22,5 +22,6 @@ function result = laguerre_fit(fo, x, n, alpha)
     product = laguerre_inner_product(lag_values(row,:), fo, x);
     coefs(row) = product;
   end
+  display(coefs);
   result = coefs * lag_values;
 end

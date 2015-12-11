@@ -42,7 +42,19 @@ function coefficients = gs_polynomials(n, x, alternating_ones)
       coefficients(row, :) = coefficients(row, :) + (-1)*e_coeff*coefficients(row-power, :);
     end
     g_g_product(row) = gs_inner_product(coefficients(row,:), coefficients(row,:), x);
+    
+    
   end
+  
+%   % Plot the integrand volume for the highest order
+%   y1 = polyval(coefficients(n+1-1,:),x);
+%   y2 = polyval(ones(n+1,:), x);
+%   exponential = exp(-x);
+%   product = - y1 .* y2 .* exponential;
+%   axis([0,100,-80,80])
+%   plot(x, product, '-', 'LineWidth',1, 'Color', 'blue'); 
+%   grid on;
+%   xlabel('x'); ylabel('Volume of the integrand');
   
   % Computing the normalizing constant and normalizing the polynomial
   for order = 0:n

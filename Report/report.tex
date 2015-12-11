@@ -43,7 +43,7 @@
 
 \section{Introduction}
 
-This report explores the properties of various orthogonal function sets and their applicability to generating fits to real-life data.
+Performance of Wi-Fi receivers is heavily dependent on scattering, hence building a sound mathematical model for signal propagation is crucial for improving its quality. This report investigates the modelling of probability mass functions using orthogonal function sets such as Gram-Schmidt or Laguerre.
 
 \section{Orthogonality}
 
@@ -57,11 +57,11 @@ So that if we compute the inner product of both LHS and RHS with some arbitrary 
 \begin{equation} \langle\,f,g_k\rangle = a_0\langle\,g_0,g_k\rangle + a_1\langle\,g_1,g_k\rangle + \ldots + \boldsymbol{a_k\langle\,g_k,g_k\rangle} + \ldots + a_n\langle\,g_n,g_k\rangle \end{equation}
 which lets us calculate the $a_k$ coefficient as:
 \begin{equation} a_k = \frac {\langle\,f,g_k\rangle} {\langle\,g_k,g_k\rangle} \end{equation}
-This result is crucial, as it demonstrates that the coefficients are independent of the size of the orthogonal basis used for the investigation i.e. if more functions are decided to be added, old coefficients do not have to be recomputed.
+This result is important, as it demonstrates that the coefficients are independent of the size of the orthogonal basis used for the investigation i.e. if more functions are decided to be added, old coefficients do not have to be recomputed.
 \\ \\
 Investigation of orthogonal function fitting can be started with analysing the Fourier series. The set of sines and cosines making up the basis turn out to be orthogonal under integral operation over one period.
 \\
-Even though useful, Fourier series is quite a basic method for function fitting and will not be analysed in detail in this report. We will instead delve into the investigation of two particularly relevant orthogonal basis functions - Gram-Schmidt and Laguerre.
+Even though useful, Fourier series is only one example of an orthogonal basis and will not be analysed in detail in this report. We will instead delve into the investigation of two particularly relevant orthogonal basis functions - Gram-Schmidt and Laguerre.
 
 \section{Gram-Schmidt functions}
 
@@ -95,8 +95,14 @@ We compute the polynomial coefficients by iteratively multiplying the previous o
 \lstinputlisting[caption={gs\_polynomials.m},label={lst:gspolynomials},firstline=32, lastline=46]{../Matlab/GramSchmidt/gs_polynomials.m}
 
 \noindent The leading coefficient of the appropriate orthogonal polynomial is retrieved from the matrix of coefficients of the independent basis ("ones" in listing \ref{lst:gspolynomials}). Interestingly, the Gram Schmidt functions are stored as their polynomial coefficients instead of the y-values calculated over the supplied x-range. \\
-The x-range used for the computation of the Gram Schmidt e factors was chosen so that the marginal improvement over the evaluation accuracy did not exceed 1 \% of the function value, and turned out to be around 70. \\ \\
-All the functions were tested in the gs\_polynomials\_testbench.m file.
+
+\noindent The x-range was chosen by observing the volume of the integrand used for the inner product calculation. The product of the fourth order polynomial and fifth order monomial (used for the calculation of fifth order coefficients) turned out to drop dramatically at $x \approx 30$ and hit $-2.678 \times 10^{-7}$ at $x=50$ (figure \ref{fig:integrand}). Hence the range from $0$ to $70$ was used for all the calculations in order to maintain a reasonable accuracy margin. The orthonormality of the subsequently normalized functions has been later confirmed which proves that Gram Schmidt polynomials could be used as an appropriate function basis for fitting. All the functions were then tested in the gs\_polynomials\_testbench.m file.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth]{integrand.eps}
+\caption{\label{fig:integrand}Product of the fourth order Gram Schmidt polynomial and fifth order monomial.}
+\end{figure}
 
 \section{Laguerre functions}
 
@@ -112,7 +118,7 @@ We are going to explore two methods of computing their coefficients and subseque
 
 \subsection{Rodrigues formula}
 
-Using the Rodrigues formula, the n-th associated Laguerre polynomial is:
+Using the Rodrigues formula, the n-th associated Laguerre function is:
 \begin{equation}
 L_n^{(\alpha)}(x)=\frac{1}{n!}x^{-\alpha}e^x\frac{d^n}{dx^n}(x^{n+\alpha}e^{-x}), \quad\quad n \in \mathbb{N}, \alpha \in \mathbb{R}
 \end{equation}
@@ -140,20 +146,20 @@ L_1^{(\alpha)}(x) &= -x+\alpha+1
 This is achieved by the fairly simple:
 \lstinputlisting[caption={recursive\_laguerre.m},label={lst:recursivelaguerre},firstline=27, lastline=35]{../Matlab/Laguerre/recursive_laguerre.m}
 
-\noindent Note the use of the \textit{circshift} function in order to simulate multiplication by the coefficient vector by the variable $x$.\\
+\noindent Note the use of the \textit{circshift} function in order to simulate multiplication of the coefficient vector by the variable $x$.\\
 For $\alpha = 0$ the Laguerre plots using the method above looked exactly as expected.
 
 \subsection{Gram-Schmidt Laguerre comparison}
 
 It is easy to note that under $alpha = 0$ the inner product operations for Laguerre and Gram-Schmidt polynomials look identical. This motivated an investigation of the similarities between the two orthogonal sets.
 
-\begin{figure}
+\begin{figure}[!h]
 \centering
-\includegraphics[width=0.6\textwidth]{gs_laguerre_comparison.eps}
-\caption{\label{fig:gslaguerrecomparison}Comparison between the Gram Schmidt and Laguerre polynomials up to order 5.}
+\includegraphics[width=0.5\textwidth]{gs_laguerre_comparison.eps}
+\caption{\label{fig:gslaguerrecomparison}Comparison between the Gram Schmidt (red) and Laguerre (blue) polynomials up to order 5.}
 \end{figure}
 
-When plotted side by side (Figure \ref{fig:gslaguerrecomparison}) the Gram Schmidt and Laguerre polynomials indeed turn out to have much in common. It is clear that for some of the polynomial orders, the Laguerre plot is just the Gram Schmidt plot negated. \\
+\noindent When plotted side by side (Figure \ref{fig:gslaguerrecomparison}) the Gram Schmidt and Laguerre polynomials indeed turn out to have much in common. It is clear that for some of the polynomial orders, the Laguerre plot is just the Gram Schmidt plot negated. \\
 This is even clearer when the polynomial coefficients for both are printed out:
 \begin{align}
 gs_{coefficients} &= 
@@ -179,9 +185,9 @@ laguerre_{coefficients} &=
 The odd powers of Laguerre polynomials are just their Gram Schmidt counterparts negated. This may suggest that if the linearly independent basis on which the Gram Schmidt polynomials are built is changed, both orthogonal sets are going to be equal. \\
 Given that finding, it seems like negating the coefficients of odd order monomials, i.e. constructing a linearly independent set $1, -x, x^2, -x^3, \ldots$ will produce Gram Schmidt coefficients identical to the Laguerre ones. This is also algebraically consistent with the formula for Gram Schmidt coefficients and yielded expected results when implemented in MATLAB. \\
 \\
-Finally, the set of \textbf{associated} Laguerre polynomials was produced using the formula:
+Finally, the set of \textbf{associated} Laguerre functions was produced using the formula:
 \begin{equation} \label{associated_laguerre_definition}
-\psi_n^{(\alpha)}(x) = \sqrt{\frac{\Gamma(n+1)}{\Gamma(n+\alpha+1)}} x^{\alpha/2} e^{-x/2} L_n^{(\alpha)}(x)
+\psi_n^{(\alpha)}(x) = \sqrt{\frac{\Gamma(n+1)}{\Gamma(n+\alpha+1)}} x^{\alpha/2} e^{-x/2} L_n^{(\alpha)}(x) dx
 \end{equation}
 Associated Laguerre functions form an orthonormal set under the inner product \begin{equation} \label{inner_product}
 \langle\,f_n, f_m \rangle = \int_{0}^{\infty}f_n(x)f_m(x)
@@ -190,9 +196,9 @@ since after some algebraic manipulation it becomes analogous to the product in t
 
 \begin{figure}[!ht]
   \centering
-  \subfloat[][]{\includegraphics[width=.45\textwidth]{associated_laguerre_alpha5.eps}}\quad
-  \subfloat[][]{\includegraphics[width=.45\textwidth]{associated_laguerre.eps}}
-  \caption{Associated Laguerre functions to the 5th order ($\alpha=5$ and $\alpha=5$).}
+  \subfloat[][]{\includegraphics[width=.45\textwidth]{associated_laguerre}}\quad
+  \subfloat[][]{\includegraphics[width=.45\textwidth]{associated_laguerre_alpha5.eps}}
+  \caption{Associated Laguerre functions to the 5th order for (a) $\alpha=0$ and (b) $\alpha=5$.}
   \label{fig:associatedlaguerre}
 \end{figure}
 
@@ -220,7 +226,7 @@ as suggested by the inner product definition quoted earlier(\ref{inner_product})
 
 \subsection{Sample data}
 The sample fitting data set was generated using the supplied \textit{exp\_data.m} function.
-The function generates a set of random complex numbers, scaled by the factor $sqrt(\sigma^2/2)$ and shifted by the mean $\mu$. Power of the dataset is then calculated by squaring the modulus of the generated values. \\
+The function generates a set of random complex numbers, scaled by the factor $\sqrt{\sigma^2/2}$ and shifted by the mean $\mu$. Power of the dataset is then calculated by squaring the modulus of the generated values. \\
 In order to plot the data, we generate a histogram with a prescribed number of bins which represent equally spaced intervals. The number of power data samples belonging to each interval is then calculated, with the whole dataset subsequently normalized to approximate a probability density function.
 
 \begin{figure}
@@ -234,7 +240,7 @@ In order to plot the data, we generate a histogram with a prescribed number of b
 \subsection{Basic Laguerre fit}
 Having a sound dataset generated, the applicability of Laguerre function fitting could now be tested. The function \textit{laguerre\_fit.m} thus takes the four inputs:
 \begin{itemize}
-\item f0 - the function values
+\item fo - the function values
 \item x - the domain for which the function values were generated
 \item n - the highest desired order of the fitting Laguerre function
 \item alpha - the $\alpha$ coefficient
@@ -243,18 +249,18 @@ and returns the \textbf{fitted data points} as an output.
 
 \lstinputlisting[caption={laguerre\_fit.m},label={lst:laguerrefit},firstline=17, lastline=26]{../Matlab/FittingData/laguerre_fit.m}
 
-\noindent The code listing \ref{lst:laguerrefit} numerically evaluates the inner product between the supplied dataset and the Laguerre function and then multiplies it by the data points of the said function.
+\noindent The code listing \ref{lst:laguerrefit} numerically evaluates the inner product between the supplied dataset and the Laguerre function and then multiplies it by the data points of the said function. \\
 
-\begin{figure}
+\noindent Figure \ref{fig:basicfit} presents the generated data points for $\sigma^2=2, \mu=0, n_{samples}=10^4, n_{bins}=100$. The plot looks like a fast decaying exponential, since a customary distribution "bell" is placed on the origin, hence points on the LHS of the axis are reflected and added to the RHS of the distribution. The best fit line (blue) clearly shows that even though the fit further from the origin can be considered reasonable, it cannot cope with a sharp exponential increase near x=0. This is because, as seen in figure \ref{fig:associatedlaguerre}, all of the 5th order Laguerre polynomials pass through the origin, hence cannot model a non-zero function value there.
+
+\begin{figure}[!h]
 \centering
 \includegraphics[width=0.5\textwidth]{basic_fit.eps}
 \caption{\label{fig:basicfit}Basic 5th order, $\alpha=0$ Laguerre fit for $\sigma^2=2, \mu=0, n_{samples}=10^4, n_{bins}=100$.}
 \end{figure}
 
-\noindent Figure \ref{fig:basicfit} clearly shows that even though the fit further from the origin can be considered reasonable, it cannot cope with a sharp exponential increase near x=0.
-
 \subsection{Parameterised fit comparison}
-Realising the mathematical origin of the randomly scattered data gives us a way of testing the accuracy of the fit. Our generated data can be described by means of a random variable $X$ which is a sum of squares of two other random variables. Both have zero mean and an identical variance, which means that $X$ is chi-squared distributed. Since the probability density function of the chi-squared distribution is:
+Realising the mathematical origin of the randomly scattered data gives us a way of testing the accuracy of the fit. Our generated data can be described by means of a random variable $X$ which is a sum of squares of two other random variables. Both have zero mean and an identical variance, which means that $X$ is chi-squared distributed. The probability density function of the chi-squared distribution is:
 \begin{equation}
 f(x) = \frac{1}{2^{n/2} \Gamma(n/2)}x^{n/2-1} e^{-x/2}, \quad x \in (0, \infty)
 \end{equation}
@@ -263,43 +269,43 @@ where, in our case, the number of degrees of freeedom $n$, equals $2$, hence:
 f(x) = \frac{1}{2} e^{-x/2}
 \end{equation}
 
-\noindent Given our definition of the associated Laguerre functions (eq. \ref{associated_laguerre_definition}), an $\alpha = 0$, 0th order fit should provide an exact match for the above pdf. To compare it to the expectation, we construct a parameterised fit of the form $f(x) = \frac{1}{\xi} e^{-x/\xi}$. The mean $\xi$ is estimated by using the fact that for a probability distribution function $f(x)$ the mean is $\xi = \int_{0}^{\infty} xf(x) dx$.
+\noindent Given our definition of the Laguerre functions (eq. \ref{associated_laguerre_definition}), an $\alpha = 0$, 0th order fit should provide an exact match for the above pdf. To compare it to the expectation, we construct a parameterised fit of the form $f(x) = \frac{1}{\xi} e^{-x/\xi}$. The mean $\xi$ is estimated by using the fact that for a probability distribution function $f(x)$ the mean is $\xi = \int_{0}^{\infty} xf(x) dx$. \\
 
 \begin{figure}[!h]
 \centering
-\includegraphics[width=0.6\textwidth]{laguerre_parameterised_fit.eps}
-\caption{\label{fig:laguerreparemeterisedfit}Exponentially generated data, ideal parameterised fit(red) and the Laguerre fit (blue).}
+\includegraphics[width=0.5\textwidth]{laguerre_parameterised_fit.eps}
+\caption{\label{fig:laguerreparemeterisedfit}Exponentially generated data ($\sigma^2=2, \mu=0, n_{samples}=10^4, n_{bins}=100$), ideal parameterised fit (red) and the 0-th order, $\alpha=0$ Laguerre fit (blue).}
 \end{figure}
 
-\noindent The error, in the least squares sense, between the Laguerre and parameterised fit (figure \ref{fig:laguerreparemeterisedfit}), was evaluated to be $2.30 \times 10^{-4}$. The parameterised fit seems to match the data more closely in the intermediate values of x, but the error between the two functions is insignificant - two orders of magnitude smaller than the largest function values.
+\noindent The error, in the least squares sense, between the Laguerre and parameterised fit (figure \ref{fig:laguerreparemeterisedfit}), was evaluated to be $2.30 \times 10^{-4}$. Contrary to the expected $0.5$, the calculated Laguerre leading coefficient is $0.4845$ which justifies the discrepancy. The parameterised fit is plotted based on the estimated mean of $\xi=2.0554$ - clearly, a lot closer to the desired mean of $2$. The parameterised fit seems to match the data more closely in the intermediate values of x, but the error between the two functions is insignificant - three orders of magnitude smaller than the largest function values.  
 
 \subsection{Difficult data}
 It is clear that an orthonormal set of functions is best used for fitting in the range that it is defined. Fits for different orders and values of $\alpha$ are presented in figure \ref{fig:difficultfits}.
 
 \begin{figure}[!ht]
   \centering
-  \subfloat[][]{\includegraphics[width=.4\textwidth]{lfit_order1_alpha2.eps}}\quad
-  \subfloat[][]{\includegraphics[width=.4\textwidth]{lfit_order1_alpha4.eps}}\\
-  \subfloat[][]{\includegraphics[width=.4\textwidth]{lfit_order4_alpha2.eps}}\quad
-  \subfloat[][]{\includegraphics[width=.4\textwidth]{lfit_order4_alpha4.eps}}
+  \subfloat[][]{\includegraphics[width=.35\textwidth]{lfit_order1_alpha2.eps}}\quad
+  \subfloat[][]{\includegraphics[width=.35\textwidth]{lfit_order1_alpha4.eps}}\\
+  \subfloat[][]{\includegraphics[width=.35\textwidth]{lfit_order4_alpha2.eps}}\quad
+  \subfloat[][]{\includegraphics[width=.35\textwidth]{lfit_order4_alpha4.eps}}
   \caption{Laguerre fits of different orders and alpha parameters}
   \label{fig:difficultfits}
 \end{figure}
 
-\noindent As we can see, the higher order fits also provide a closer matching of the generated data. It is unclear from the figures, though, how alpha influences this accuracy - in case of the 0th order function bigger alpha deteriorated the fit, whereas for the 4th order it improved the fit noticeably. \\
+\noindent As we can see, the higher order fits also provide a closer matching of the generated data. It is unclear from the figures, though, how alpha influences this accuracy - in case of the 0th order function bigger alpha deteriorated the fit, whereas for the 4th order it improved the fit noticeably. A possible explanation for the inaccuracy is the integration range - for the Laguerre inner product $0$ to $\infty$ and in practice the x range computed by the \textit{exp\_data.m} function.\\
 
-\noindent It is worth noting that if the data is shifted even further, the Laguerre functions provide an even worse fit. Figure \ref{fig:poorfit} clearly shows that Laguerre fit is of nearly no use even for a mean of 5.
+\noindent It is worth noting that if the data is shifted even further, the Laguerre functions provide an even worse fit. Figure \ref{fig:poorfit} clearly shows that Laguerre fit is of nearly no use even for a mean of 5. \\
 
 \begin{figure}[!h]
 \centering
-\includegraphics[width=0.6\textwidth]{poor_fit.eps}
-\caption{\label{fig:poorfit}A fifth order Laguerre fit for $alpha=5$ with random data generated for $\sigma^2=1/3, \mu=5, n_{samples} = 10000, n_{bins} = 1000$}
+\includegraphics[width=0.5\textwidth]{poor_fit.eps}
+\caption{\label{fig:poorfit}A 5th order Laguerre fit for $\alpha=5$ with data generated for $\sigma^2=1/3, \mu=5, n_{samples} = 10000, n_{bins} = 100$}
 \end{figure}
 
 \subsection{Shifting and scaling}
 
-Referring back to figure \ref{fig:associatedlaguerre}, the Laguerre polynomial values are defined on a range from $0$ to $~35$, nearing zero everywhere after. It is clear that even though the supplied dataset might be defined on a domain much larger than the desired Laguerre one, we can shift and scale it to match our needs. \\
-\textbf{Shifting} is somewhat clear - since the Laguerre polynomials are best defined on the above interval, we should bring the dataset as close as possible to zero. This is done by subtracting the smallest x coordinate in the set from all the other values in the x range:
+Fitting a set of functions to data is only possible if both span a similar domain. Referring back to figure \ref{fig:associatedlaguerre}, the Laguerre polynomial values are defined on a range from $0$ to $~40$, nearing zero everywhere after. It is clear that even though the supplied dataset might be defined on a domain much larger than the desired Laguerre one, we can shift and scale it to match our needs. \\
+\textbf{Shifting} is somewhat easy - since the Laguerre polynomials are best defined on the above interval, we should bring the dataset as close as possible to zero. This is done by subtracting the smallest x coordinate in the set from all the other values in the x range:
 \begin{equation}
 x^\prime(n) = x(n) - x(1)
 \end{equation}
@@ -321,7 +327,7 @@ Since the degree of the fit is arbitrarily chosen, the choice of $\lambda$ shoul
 
 \noindent The error is then used in the laguerre\_optimal\_fit function which returns the values of the actual minimum-error fit. The fminsearch requires supplying the initial guesses for the parameter values, which were chosen to be 5 and 10 for alpha and lambda respectively. \\
 
-\noindent The choice of the initial guesses was based on the empirical observations. The scaling parameter corresponds to the approximate middle of the interval for which the associated Laguerre polynomials are greater than 0.
+\noindent The choice of the initial guesses was based on the empirical observations. The scaling parameter corresponds to the approximate middle of the interval for which the associated Laguerre functions are greater than 0.
 Comparing the Associated Laguerre functions for $\alpha = 0$ and $\alpha = 5$ in figure \ref{fig:associatedlaguerre}, it is clear that the greater the alpha, the more right-shifted the maxima of the functions appear to be. That is why for the initial scaling factor of 10, an initial guess of $\alpha = 5$ is appropriate. It should be noted, however, that for $\alpha > 0$ the functions' values at the origin are 0. Hence for the datasets closer to the origin it might be beneficial to try fitting with $\alpha = 0$ and compare the difference between the fit errors for the two outcomes.
 
 \lstinputlisting[caption={laguerre\_optimal\_fit.m},label={lst:laguerreoptimalfit},firstline=18, lastline=23]{../Matlab/FittingData/laguerre_optimal_fit.m}

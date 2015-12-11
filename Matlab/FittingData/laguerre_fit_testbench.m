@@ -32,12 +32,13 @@ display(error);
 % Plotting the data
 plot(x, laguerre, '-', 'LineWidth',1, 'Color', 'blue');
 
+% hold on;
+% plot(x, parameterised_fit, '-', 'LineWidth',1, 'Color', 'red');
+xlabel('x'); ylabel('Laguerre fit');
+
 hold on;
 plot(x,fo,'kx','LineWidth',1.2)
 grid on
-ystr = sprintf('Laguerre fit (order = %g, alpha = %g)',order, alpha);
-xlabel('x'); ylabel(ystr);
+% legend('Laguerre fit','Parameterised fit')
 
-% hold on;
-% plot(x, parameterised_fit, '-', 'LineWidth',1, 'Color', 'red');
-% xlabel('x'); ylabel('Generated data points with the Laguerre and Parameterised fit');
+
