@@ -43,7 +43,7 @@
 
 \section{Introduction}
 
-Performance of Wi-Fi receivers is heavily dependent on scattering, hence building a sound mathematical model for signal propagation is crucial for improving its quality. This report investigates the modelling of probability mass functions using orthogonal function sets such as Gram-Schmidt or Laguerre.
+Performance of Wi-Fi receivers is heavily dependent on scattering, hence building a sound mathematical model for signal propagation is needed for improving its quality. This report investigates the modelling of probability mass functions using orthogonal function sets such as Gram-Schmidt or Laguerre.
 
 \section{Orthogonality}
 
@@ -96,7 +96,7 @@ We compute the polynomial coefficients by iteratively multiplying the previous o
 
 \noindent The leading coefficient of the appropriate orthogonal polynomial is retrieved from the matrix of coefficients of the independent basis ("ones" in listing \ref{lst:gspolynomials}). Interestingly, the Gram Schmidt functions are stored as their polynomial coefficients instead of the y-values calculated over the supplied x-range. \\
 
-\noindent The x-range was chosen by observing the volume of the integrand used for the inner product calculation. The product of the fourth order polynomial and fifth order monomial (used for the calculation of fifth order coefficients) turned out to drop dramatically at $x \approx 30$ and hit $-2.678 \times 10^{-7}$ at $x=50$ (figure \ref{fig:integrand}). Hence the range from $0$ to $70$ was used for all the calculations in order to maintain a reasonable accuracy margin. The orthonormality of the subsequently normalized functions has been later confirmed which proves that Gram Schmidt polynomials could be used as an appropriate function basis for fitting. All the functions were then tested in the gs\_polynomials\_testbench.m file.
+\noindent To calculate the inner product defined above, the values of the integrand were evaluated over a prescribed x-range while the integral itself was calculated using the MATLAB trapezoidal integration function \textit{trapz}.The x-range was chosen by observing the volume of the integrand used for the inner product calculation. The product of the fourth order polynomial and fifth order monomial (used for the calculation of fifth order coefficients) turned out to drop dramatically at $x \approx 30$ and hit $-2.678 \times 10^{-7}$ at $x=50$ (figure \ref{fig:integrand}). Hence the range from $0$ to $70$ was used for all the calculations in order to maintain a reasonable accuracy margin. The orthonormality of the subsequently normalized functions has been later confirmed which proves that Gram Schmidt polynomials could be used as an appropriate function basis for fitting. All the functions were then tested in the gs\_polynomials\_testbench.m file.
 
 \begin{figure}
 \centering
@@ -184,7 +184,9 @@ laguerre_{coefficients} &=
 \end{align}
 The odd powers of Laguerre polynomials are just their Gram Schmidt counterparts negated. This may suggest that if the linearly independent basis on which the Gram Schmidt polynomials are built is changed, both orthogonal sets are going to be equal. \\
 Given that finding, it seems like negating the coefficients of odd order monomials, i.e. constructing a linearly independent set $1, -x, x^2, -x^3, \ldots$ will produce Gram Schmidt coefficients identical to the Laguerre ones. This is also algebraically consistent with the formula for Gram Schmidt coefficients and yielded expected results when implemented in MATLAB. \\
-\\
+
+\subsection{Associated Laguerre functions}
+
 Finally, the set of \textbf{associated} Laguerre functions was produced using the formula:
 \begin{equation} \label{associated_laguerre_definition}
 \psi_n^{(\alpha)}(x) = \sqrt{\frac{\Gamma(n+1)}{\Gamma(n+\alpha+1)}} x^{\alpha/2} e^{-x/2} L_n^{(\alpha)}(x) dx
@@ -222,7 +224,7 @@ so that indeed:
 \begin{equation}
 a_n = \int_{0}^{\infty} \psi_nf_0dx
 \end{equation}
-as suggested by the inner product definition quoted earlier(\ref{inner_product}), which proves that the Laguerre fit is such under the least squares sense.
+as suggested by the inner product definition quoted earlier (\ref{inner_product}), which proves that the Laguerre fit is such under the least squares sense.
 
 \subsection{Sample data}
 The sample fitting data set was generated using the supplied \textit{exp\_data.m} function.
@@ -260,7 +262,7 @@ and returns the \textbf{fitted data points} as an output.
 \end{figure}
 
 \subsection{Parameterised fit comparison}
-Realising the mathematical origin of the randomly scattered data gives us a way of testing the accuracy of the fit. Our generated data can be described by means of a random variable $X$ which is a sum of squares of two other random variables. Both have zero mean and an identical variance, which means that $X$ is chi-squared distributed. The probability density function of the chi-squared distribution is:
+Realising the mathematical origin of the randomly scattered data gives us a way of testing the accuracy of the fit. Our generated data can be described by means of a random variable $X$ which is a sum of squares of two other random variables. Both have an identical variance, which means that $X$ is chi-squared distributed. The probability density function of the chi-squared distribution is:
 \begin{equation}
 f(x) = \frac{1}{2^{n/2} \Gamma(n/2)}x^{n/2-1} e^{-x/2}, \quad x \in (0, \infty)
 \end{equation}
@@ -323,7 +325,7 @@ Since the degree of the fit is arbitrarily chosen, the choice of $\lambda$ shoul
 
 \noindent In our case, the cost function requiring optimization was the least-squares error between the generated data and the fit. The implementation in listing \ref{lst:fittingerror} does exactly that - it first shifts and scales the domain, then computes the Laguerre fit and calculates the error.
 
-\lstinputlisting[caption={fitting\_error.m},label={lst:fittingerror},firstline=23, lastline=34]{../Matlab/FittingData/fitting_error.m}
+\lstinputlisting[caption={fitting\_error.m},label={lst:fittingerror},firstline=22, lastline=34]{../Matlab/FittingData/fitting_error.m}
 
 \noindent The error is then used in the laguerre\_optimal\_fit function which returns the values of the actual minimum-error fit. The fminsearch requires supplying the initial guesses for the parameter values, which were chosen to be 5 and 10 for alpha and lambda respectively. \\
 
@@ -331,6 +333,8 @@ Since the degree of the fit is arbitrarily chosen, the choice of $\lambda$ shoul
 Comparing the Associated Laguerre functions for $\alpha = 0$ and $\alpha = 5$ in figure \ref{fig:associatedlaguerre}, it is clear that the greater the alpha, the more right-shifted the maxima of the functions appear to be. That is why for the initial scaling factor of 10, an initial guess of $\alpha = 5$ is appropriate. It should be noted, however, that for $\alpha > 0$ the functions' values at the origin are 0. Hence for the datasets closer to the origin it might be beneficial to try fitting with $\alpha = 0$ and compare the difference between the fit errors for the two outcomes.
 
 \lstinputlisting[caption={laguerre\_optimal\_fit.m},label={lst:laguerreoptimalfit},firstline=18, lastline=23]{../Matlab/FittingData/laguerre_optimal_fit.m}
+
+\noindent The method described above has been tested on numerous datasets generated using the \textit{exp\_data.m} function and proved to be extremely accurate - both for highly spread and narrow values regardless of their distance from the origin.
 
 \section{Real Data fitting}
 
