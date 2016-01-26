@@ -15,13 +15,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 function result = laguerre_fit(fo, x, n, alpha)
-  lag_values = associated_laguerre(n, alpha, x);
-  coefs = zeros(1,n+1);
+  lag_values = associated_laguerre(n, alpha, x); % Obtaining the fitting functions
+  coefs = zeros(1,n+1); % Multipliers of the appropriate functions
   for order = 0:n
-    row = order+1;
-    product = laguerre_inner_product(lag_values(row,:), fo, x);
-    coefs(row) = product;
+    row = order+1; % Function of n'th order is in (n+1)'th row
+    coefs(row) = laguerre_inner_product(lag_values(row,:), fo, x); % Fitting coefficients
   end
-  display(coefs);
-  result = coefs * lag_values;
+  result = coefs * lag_values; % Multiplying the function values by appropriate coefificients and adding up
 end

@@ -29,21 +29,19 @@ function coefficients = gs_polynomials(n, x, alternating_ones)
     ones = basis_ones(n+1);
   end
   
-  coefficients = zeros(n+1);
-  g_g_product = zeros([1 n+1]);
+  coefficients = zeros(n+1);  % Initiate a matrix for the polynomial coefficients
+  g_g_product = zeros([1 n+1]); % Initiate a matrix for the self products
 
   % Calculating the Gram Schmidt coefficients based on the previous orders
   for order = 0:n
-    row = order+1;
-    coefficients(row, n+1-order) = ones(row,n+1-order);
-    for power = 1:order
+    row = order+1; % Polynomial of n'th order is in (n+1)'th row
+    coefficients(row, n+1-order) = ones(row,n+1-order); % Leading coefficient
+    for power = 1:order % Remaining expansion coefficients
       v_g_product = gs_inner_product(ones(row,:), coefficients(row-power,:),x);
       e_coeff = v_g_product/g_g_product(row-power);
-      coefficients(row, :) = coefficients(row, :) + (-1)*e_coeff*coefficients(row-power, :);
+      coefficients(row, :) = coefficients(row, :) + (-1)*e_coeff*coefficients(row-power, :); % Multiply the lower order polynomial by the e_coeff and add
     end
-    g_g_product(row) = gs_inner_product(coefficients(row,:), coefficients(row,:), x);
-    
-    
+    g_g_product(row) = gs_inner_product(coefficients(row,:), coefficients(row,:), x); % Compute the square of the normalizing constant
   end
   
 %   % Plot the integrand volume for the highest order

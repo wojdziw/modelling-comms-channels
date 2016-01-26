@@ -24,6 +24,7 @@ for row = 1:n+1
   plot(x, y, '-', 'LineWidth',1, 'Color', [rand rand rand]); hold on; 
 end
 xlabel('x'); ylabel('Associated Laguerre polynomials');
+legend('0th order','1st order','2nd order','3rd order','4th order','5th order')
 
 % Verifying orthonormality
 for i = 1:n+1

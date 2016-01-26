@@ -22,20 +22,17 @@ function coefficients = recursive_laguerre(n, alpha)
 
   % Recursively computing the coefficients of the subsequent polynomials
   % based on lower orders
-  % Due to the 1-based ordering in MATLAB, row n represents coefficients of
-  % the order (n-1)
   for order = 2:n
-    row = order + 1;
+    row = order + 1; % Polynomial in n'th order is in (n+1)'th row
     
-    first_coef = (2*(order)+alpha-1)/(order);
-    second_coef = -((order)+alpha-1)/(order);
+    first_coef = (2*(order)+alpha-1)/(order); % Multiplier of the L_(n-1)
+    second_coef = -((order)+alpha-1)/(order); % Multiplier of the L_(n-2)
 
+    % Circshift simulates multiplying by 'x'
     coefficients(row, :) = first_coef * coefficients(row-1, :) - circshift(coefficients(row-1, :), [0,1])/(row-1);
     coefficients(row, :) = coefficients(row, :) + second_coef * coefficients(row-2, :);
   end
   
-  % Due to the way we are storing the values, we need to reflect the
-  % polynomial coefficients horizontally
-  coefficients = fliplr(coefficients);
+  coefficients = fliplr(coefficients); % Reflect the coefficients horizontally
 end
 

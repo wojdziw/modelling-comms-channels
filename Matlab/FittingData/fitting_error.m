@@ -20,13 +20,11 @@
 
 function error = fitting_error(fo, x, n, params)
 
-  % Extracting the relevant dta
-  alpha = params(1);
-  lambda = params(2);
+  alpha = params(1); % Extracting the alpha coefficient
+  lambda = params(2); % Extracting the lambda coefficient
   
   % Computing the scaled domain. We shift the x values to the left as much
-  % as possible and scale it by an appropriate factor in order to find a
-  % domain that is most appropriate for Laguerre fitting.
+  % as possible and scale it by a chosen factor
   xscaled = lambda*(x-x(1))/(x(length(x))-x(1));
   laguerre = laguerre_fit(fo, xscaled, n, alpha);
   

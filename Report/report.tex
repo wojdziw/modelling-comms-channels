@@ -6,8 +6,13 @@
 \usepackage{amsfonts}
 \usepackage{graphicx}
 \usepackage{mathtools}
-\usepackage{subfig}
 \usepackage[includeheadfoot,margin=0.5in]{geometry}
+
+\usepackage{chngcntr}
+\counterwithin{figure}{section}
+
+\usepackage{caption}
+\usepackage{subcaption}
 
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -53,7 +58,7 @@ We can define a set of orthogonal functions $g_0, g_1, \ldots, g_n$ whose linear
 \begin{equation}f(x) = a_0 g_0(x)+a_1 g_1(x)+a_2 g_2(x)+\ldots+a_n g_n \end{equation}
 \noindent We then define an inner product operation, for which, conveniently:
 \begin{equation} \langle\,g_n,g_m\rangle = 0 \quad \textrm{if} \quad n \ne m \end{equation}
-So that if we compute the inner product of both LHS and RHS with some arbitrary $g_k$, like:
+So that we can compute the inner product of both LHS and RHS with some arbitrary $g_k$, like:
 \begin{equation} \langle\,f,g_k\rangle = a_0\langle\,g_0,g_k\rangle + a_1\langle\,g_1,g_k\rangle + \ldots + \boldsymbol{a_k\langle\,g_k,g_k\rangle} + \ldots + a_n\langle\,g_n,g_k\rangle \end{equation}
 which lets us calculate the $a_k$ coefficient as:
 \begin{equation} a_k = \frac {\langle\,f,g_k\rangle} {\langle\,g_k,g_k\rangle} \end{equation}
@@ -92,15 +97,15 @@ We can then divide each function by its norm (square root of its inner product w
 The independent basis chosen is a set of monomials $v_0 = 1, v_1 = x, v_2 = x^2, \ldots, v_n=x^n$ which will be used to produce an orthogonal basis under operation $\int_{0}^{\infty} g_n g_m e^{-x} dx$.\\
 We compute the polynomial coefficients by iteratively multiplying the previous orders' coefficient vectors by the e-scaling factor:
 
-\lstinputlisting[caption={gs\_polynomials.m},label={lst:gspolynomials},firstline=32, lastline=46]{../Matlab/GramSchmidt/gs_polynomials.m}
+\lstinputlisting[caption={Computing the Gram-Schmidt polynomial coefficients},label={lst:gspolynomials},firstline=32, lastline=46]{../Matlab/GramSchmidt/gs_polynomials.m}
 
-\noindent The leading coefficient of the appropriate orthogonal polynomial is retrieved from the matrix of coefficients of the independent basis ("ones" in listing \ref{lst:gspolynomials}). Interestingly, the Gram Schmidt functions are stored as their polynomial coefficients instead of the y-values calculated over the supplied x-range. \\
+\noindent The leading coefficient of the appropriate orthogonal polynomial is retrieved from the matrix of coefficients of the independent basis ("ones" in listing \ref{lst:gspolynomials}). Interestingly, the Gram Schmidt functions are stored as their polynomial coefficients instead of the y-values calculated over the supplied x-range. This makes the model more robust and clearer as patterns emerge from the coefficient values later on. \\
 
 \noindent To calculate the inner product defined above, the values of the integrand were evaluated over a prescribed x-range while the integral itself was calculated using the MATLAB trapezoidal integration function \textit{trapz}.The x-range was chosen by observing the volume of the integrand used for the inner product calculation. The product of the fourth order polynomial and fifth order monomial (used for the calculation of fifth order coefficients) turned out to drop dramatically at $x \approx 30$ and hit $-2.678 \times 10^{-7}$ at $x=50$ (figure \ref{fig:integrand}). Hence the range from $0$ to $70$ was used for all the calculations in order to maintain a reasonable accuracy margin. The orthonormality of the subsequently normalized functions has been later confirmed which proves that Gram Schmidt polynomials could be used as an appropriate function basis for fitting. All the functions were then tested in the gs\_polynomials\_testbench.m file.
 
 \begin{figure}
 \centering
-\includegraphics[width=0.5\textwidth]{integrand.eps}
+\includegraphics[width=0.40\textwidth]{integrand.eps}
 \caption{\label{fig:integrand}Product of the fourth order Gram Schmidt polynomial and fifth order monomial.}
 \end{figure}
 
@@ -128,7 +133,7 @@ noting that after differentiation the $x^{-\alpha}$ and ${e^x}$ cancel out, all 
 \end{equation}
 This is accomplished by first recursively calculating the $x^n$ coefficients and then calculating them by the rest of the appropriate product:
 
-\lstinputlisting[caption={rodrigues\_laguerre.m},label={lst:rodrigueslaguerre},firstline=23, lastline=30]{../Matlab/Laguerre/rodrigues_laguerre.m}
+\lstinputlisting[caption={Computing the Laguerre polynomials using the Rodrigues formula},label={lst:rodrigueslaguerre},firstline=21, lastline=30]{../Matlab/Laguerre/rodrigues_laguerre.m}
 
 \noindent Noting, however, that the Rodrigues formula is computationally inefficient due to the repeated calculation of the derivative coefficients, we turn onto a different method: the recursive method.
 
@@ -136,7 +141,7 @@ This is accomplished by first recursively calculating the $x^n$ coefficients and
 
 This method takes the advantage of the successive polynomial generation using the formula:
 \begin{equation}
-n L_n^{(\alpha)}(x) = (2n + \alpha + 1 - x) L_{n-1}^{(\alpha)}(x) - (n + \alpha - 1) L_{n-2}^{(\alpha)}(x)
+n L_n^{(\alpha)}(x) = (2n + \alpha - 1 - x) L_{n-1}^{(\alpha)}(x) - (n + \alpha - 1) L_{n-2}^{(\alpha)}(x)
 \end{equation}
 with:
 \begin{align}
@@ -144,7 +149,7 @@ L_0^{(\alpha)}(x) &= 1 \\
 L_1^{(\alpha)}(x) &= -x+\alpha+1
 \end{align}
 This is achieved by the fairly simple:
-\lstinputlisting[caption={recursive\_laguerre.m},label={lst:recursivelaguerre},firstline=27, lastline=35]{../Matlab/Laguerre/recursive_laguerre.m}
+\lstinputlisting[caption={Computing the Laguerre polynomials using the recursive method},label={lst:recursivelaguerre},firstline=25, lastline=36]{../Matlab/Laguerre/recursive_laguerre.m}
 
 \noindent Note the use of the \textit{circshift} function in order to simulate multiplication of the coefficient vector by the variable $x$.\\
 For $\alpha = 0$ the Laguerre plots using the method above looked exactly as expected.
@@ -192,16 +197,25 @@ Finally, the set of \textbf{associated} Laguerre functions was produced using th
 \psi_n^{(\alpha)}(x) = \sqrt{\frac{\Gamma(n+1)}{\Gamma(n+\alpha+1)}} x^{\alpha/2} e^{-x/2} L_n^{(\alpha)}(x) dx
 \end{equation}
 Associated Laguerre functions form an orthonormal set under the inner product \begin{equation} \label{inner_product}
-\langle\,f_n, f_m \rangle = \int_{0}^{\infty}f_n(x)f_m(x)
+\langle\,f_n, f_m \rangle = \int_{0}^{\infty}f_n(x)f_m(x)dx
 \end{equation}
 since after some algebraic manipulation it becomes analogous to the product in the equation \ref{laguerre_inner_product} with the square root factor cancelled out.
 
-\begin{figure}[!ht]
-  \centering
-  \subfloat[][]{\includegraphics[width=.45\textwidth]{associated_laguerre}}\quad
-  \subfloat[][]{\includegraphics[width=.45\textwidth]{associated_laguerre_alpha5.eps}}
-  \caption{Associated Laguerre functions to the 5th order for (a) $\alpha=0$ and (b) $\alpha=5$.}
-  \label{fig:associatedlaguerre}
+\begin{figure}[!ht]	
+	\centering
+	\begin{subfigure}[t]{.45\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{associated_laguerre}
+		\caption{$\alpha=0$}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{.45\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{associated_laguerre_alpha5}
+		\caption{$\alpha=5$}
+	\end{subfigure}
+	\caption{Associated Laguerre functions to the 5th order}
+    \label{fig:associatedlaguerre}
 \end{figure}
 
 \section{Synthesised Data fitting}
@@ -231,7 +245,7 @@ The sample fitting data set was generated using the supplied \textit{exp\_data.m
 The function generates a set of random complex numbers, scaled by the factor $\sqrt{\sigma^2/2}$ and shifted by the mean $\mu$. Power of the dataset is then calculated by squaring the modulus of the generated values. \\
 In order to plot the data, we generate a histogram with a prescribed number of bins which represent equally spaced intervals. The number of power data samples belonging to each interval is then calculated, with the whole dataset subsequently normalized to approximate a probability density function.
 
-\begin{figure}
+\begin{figure}[!ht]
 \centering
 \includegraphics[width=0.6\textwidth]{exp_data.eps}
 \caption{\label{fig:expdata}Exponentially distributed data.}
@@ -249,7 +263,7 @@ Having a sound dataset generated, the applicability of Laguerre function fitting
 \end{itemize}
 and returns the \textbf{fitted data points} as an output.
 
-\lstinputlisting[caption={laguerre\_fit.m},label={lst:laguerrefit},firstline=17, lastline=26]{../Matlab/FittingData/laguerre_fit.m}
+\lstinputlisting[caption={Fitting the dataset using the Laguerre basis},label={lst:laguerrefit},firstline=17, lastline=25]{../Matlab/FittingData/laguerre_fit.m}
 
 \noindent The code listing \ref{lst:laguerrefit} numerically evaluates the inner product between the supplied dataset and the Laguerre function and then multiplies it by the data points of the said function. \\
 
@@ -284,14 +298,33 @@ f(x) = \frac{1}{2} e^{-x/2}
 \subsection{Difficult data}
 It is clear that an orthonormal set of functions is best used for fitting in the range that it is defined. Fits for different orders and values of $\alpha$ are presented in figure \ref{fig:difficultfits}.
 
-\begin{figure}[!ht]
-  \centering
-  \subfloat[][]{\includegraphics[width=.35\textwidth]{lfit_order1_alpha2.eps}}\quad
-  \subfloat[][]{\includegraphics[width=.35\textwidth]{lfit_order1_alpha4.eps}}\\
-  \subfloat[][]{\includegraphics[width=.35\textwidth]{lfit_order4_alpha2.eps}}\quad
-  \subfloat[][]{\includegraphics[width=.35\textwidth]{lfit_order4_alpha4.eps}}
-  \caption{Laguerre fits of different orders and alpha parameters}
-  \label{fig:difficultfits}
+\begin{figure}[!ht]	
+	\centering
+	\begin{subfigure}[t]{.3\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{lfit_order1_alpha2.eps}
+		\caption{$n=1, \alpha=2$}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{.3\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{lfit_order1_alpha4.eps}
+		\caption{$n=1, \alpha=4$}
+	\end{subfigure}
+	\\
+	\begin{subfigure}[t]{.3\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{lfit_order4_alpha2.eps}
+			\caption{$n=4, \alpha=2$}		
+	\end{subfigure}
+	\quad
+	\begin{subfigure}[t]{.3\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{lfit_order4_alpha4.eps}
+		\caption{$n=4, \alpha=4$}
+	\end{subfigure}
+	\caption{Laguerre fits of different orders and alpha parameters}
+	\label{fig:difficultfits}
 \end{figure}
 
 \noindent As we can see, the higher order fits also provide a closer matching of the generated data. It is unclear from the figures, though, how alpha influences this accuracy - in case of the 0th order function bigger alpha deteriorated the fit, whereas for the 4th order it improved the fit noticeably. A possible explanation for the inaccuracy is the integration range - for the Laguerre inner product $0$ to $\infty$ and in practice the x range computed by the \textit{exp\_data.m} function.\\
@@ -325,14 +358,14 @@ Since the degree of the fit is arbitrarily chosen, the choice of $\lambda$ shoul
 
 \noindent In our case, the cost function requiring optimization was the least-squares error between the generated data and the fit. The implementation in listing \ref{lst:fittingerror} does exactly that - it first shifts and scales the domain, then computes the Laguerre fit and calculates the error.
 
-\lstinputlisting[caption={fitting\_error.m},label={lst:fittingerror},firstline=22, lastline=34]{../Matlab/FittingData/fitting_error.m}
+\lstinputlisting[caption={Computing the cost function to optimise the fit},label={lst:fittingerror},firstline=23, lastline=32]{../Matlab/FittingData/fitting_error.m}
 
 \noindent The error is then used in the laguerre\_optimal\_fit function which returns the values of the actual minimum-error fit. The fminsearch requires supplying the initial guesses for the parameter values, which were chosen to be 5 and 10 for alpha and lambda respectively. \\
 
 \noindent The choice of the initial guesses was based on the empirical observations. The scaling parameter corresponds to the approximate middle of the interval for which the associated Laguerre functions are greater than 0.
-Comparing the Associated Laguerre functions for $\alpha = 0$ and $\alpha = 5$ in figure \ref{fig:associatedlaguerre}, it is clear that the greater the alpha, the more right-shifted the maxima of the functions appear to be. That is why for the initial scaling factor of 10, an initial guess of $\alpha = 5$ is appropriate. It should be noted, however, that for $\alpha > 0$ the functions' values at the origin are 0. Hence for the datasets closer to the origin it might be beneficial to try fitting with $\alpha = 0$ and compare the difference between the fit errors for the two outcomes.
+Comparing the Associated Laguerre functions for $\alpha = 0$ and $\alpha = 5$ in figure \ref{fig:associatedlaguerre}, it is clear that the greater the alpha, the more right-shifted the maxima of the functions appear to be. That is why for the initial scaling factor of 10, an initial guess of $\alpha = 5$ is appropriate. It should be noted, however, that for $\alpha > 0$ the functions' values at the origin are 0 (due to the $x^{\alpha/2}$ factor). Hence the datasets were then fitted with both $\alpha = 0$ and $\alpha = 5$ with the difference between the fit errors compared for the two outcomes and more optimal option chosen.
 
-\lstinputlisting[caption={laguerre\_optimal\_fit.m},label={lst:laguerreoptimalfit},firstline=18, lastline=23]{../Matlab/FittingData/laguerre_optimal_fit.m}
+\lstinputlisting[caption={Optimising the Laguerre fit},label={lst:laguerreoptimalfit},firstline=18, lastline=23]{../Matlab/FittingData/laguerre_optimal_fit.m}
 
 \noindent The method described above has been tested on numerous datasets generated using the \textit{exp\_data.m} function and proved to be extremely accurate - both for highly spread and narrow values regardless of their distance from the origin.
 
@@ -340,7 +373,7 @@ Comparing the Associated Laguerre functions for $\alpha = 0$ and $\alpha = 5$ in
 
 \begin{figure}[!h]
 \centering
-\includegraphics[width=0.6\textwidth]{real_data_fit.eps}
+\includegraphics[width=0.55\textwidth]{real_data_fit.eps}
 \caption{\label{fig:realdataset}A Laguerre fit to the measured dataset}
 \end{figure}
 
