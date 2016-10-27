@@ -1,6 +1,7 @@
 **Modelling Wireless Communication Channels** - Oxford 3rd year coursework project
 
 **Project description**
+
 This project involved representing data in the absence of a physics-based model, but using parametrised functions. It aimed to mathematically model a phenomenon completely ignoring its underlying physical model.
 
 I investigated the statistical properties of electromagnetic communication signals, more specifically in relation to Wi-Fi systems operating within an indoor environment. I did this by constructing a mathematical model of the probability density function describing the attenuation caused by the scattering process in the wireless communication medium. 
